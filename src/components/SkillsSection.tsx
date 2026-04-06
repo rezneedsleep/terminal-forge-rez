@@ -1,6 +1,7 @@
 import {
   Server, Container, Monitor, Globe, Shield, Network,
-  Cpu, CircuitBoard, Radio, Database, HardDrive
+  Cpu, CircuitBoard, Radio, Database, HardDrive,
+  Code, Terminal, Cog
 } from 'lucide-react';
 
 const categories = [
@@ -32,8 +33,17 @@ const categories = [
     ],
   },
   {
-    title: 'Embedded Systems',
+    title: 'Backend & Systems',
     color: 'text-terminal-cyan',
+    items: [
+      { icon: Terminal, name: 'Linux / Bash' },
+      { icon: Code, name: 'Node.js / Python' },
+      { icon: Cog, name: 'Docker / LXC' },
+    ],
+  },
+  {
+    title: 'Embedded Systems',
+    color: 'text-terminal-green',
     items: [
       { icon: Cpu, name: 'ESP32' },
       { icon: CircuitBoard, name: 'Arduino' },
@@ -55,7 +65,7 @@ const SkillsSection = () => {
         </h2>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((cat) => (
             <div
               key={cat.title}
