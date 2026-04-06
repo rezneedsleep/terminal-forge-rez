@@ -38,6 +38,15 @@
     --terminal-green: 155 100% 50%;
     --terminal-dim: 0 0% 40%;
   }
+
+  /* Tambahan Smooth Scroll */
+  html {
+    scroll-behavior: smooth !important;
+  }
+
+  section {
+    scroll-margin-top: 100px;
+  }
 }
 
 @layer base {
@@ -104,4 +113,4 @@
 /* Font family */
 .font-mono {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
+} 

@@ -2,10 +2,13 @@ import { Wifi, Shield, Radio, Cpu, HardDrive, Monitor, Bluetooth, Zap } from 'lu
 
 const FeaturedProjectsSection = () => {
   return (
-    <section className="px-6 py-24">
-      <div className="max-w-5xl mx-auto">
-        <div className="font-mono text-xs text-terminal-dim mb-4 flex items-center gap-2">
-          <span className="text-terminal-green">$</span> cat featured_project.md
+  <section className="px-6 py-24 scroll-mt-20">
+      <div className="max-w-5xl mx-auto"> 
+        {/* Prompt Terminal - Ukuran sama dengan Hero, tanpa icon terminal */}
+        <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
+          <span className="text-terminal-green">$</span>
+          <span className="text-terminal-green">cat</span>
+          <span>featured_project.md</span>
         </div>
 
         {/* ESP32 Marauder */}

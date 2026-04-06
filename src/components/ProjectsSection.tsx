@@ -18,9 +18,12 @@ const projects = [
 const ProjectsSection = () => {
   return (
     <section className="px-6 py-24">
-      <div className="max-w-5xl mx-auto">
-        <div className="font-mono text-xs text-terminal-dim mb-4 flex items-center gap-2">
-          <span className="text-terminal-green">$</span> find ./projects -type f
+      <div className="max-w-5xl mx-auto"> 
+        {/* Prompt Terminal - Ukuran sama dengan Hero, tanpa icon terminal */}
+        <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
+          <span className="text-terminal-green">$</span>
+          <span className="text-terminal-green">cat</span>
+          <span>featured_project.md</span>
         </div>
 
         <h2 className="text-2xl md:text-3xl font-mono font-bold text-foreground mb-10">

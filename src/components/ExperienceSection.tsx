@@ -1,19 +1,23 @@
 import { Droplets, Wind, Building2, Zap } from 'lucide-react';
 
 const ExperienceSection = () => (
-  <section className="px-6 py-24">
-    <div className="max-w-5xl mx-auto">
-      <div className="font-mono text-xs text-terminal-dim mb-4 flex items-center gap-2">
-        <span className="text-terminal-green">$</span> cat experience.log
-      </div>
+  // Tambahkan id="work" di sini
+  <section id="work" className="px-6 py-24 scroll-mt-20">
+    <div className="max-w-5xl mx-auto"> 
+        {/* Prompt Terminal - Ukuran sama dengan Hero, tanpa icon terminal */}
+        <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
+          <span className="text-terminal-green">$</span>
+          <span className="text-terminal-green">cat</span>
+          <span>experience.log</span>
+        </div>
 
       <h2 className="text-2xl md:text-3xl font-mono font-bold text-foreground mb-10">
         Experience
       </h2>
 
-      <div className="border border-border rounded-lg bg-card p-6 md:p-8 mb-10 hover:border-terminal-cyan/20 transition-colors">
+      <div className="border border-border rounded-lg bg-card p-6 md:p-8 mb-10 hover:border-terminal-cyan/20 transition-all duration-300 group">
         <div className="flex items-start gap-4">
-          <Building2 size={22} className="text-terminal-cyan mt-1 shrink-0" />
+          <Building2 size={22} className="text-terminal-cyan mt-1 shrink-0 group-hover:scale-110 transition-transform" />
           <div>
             <h3 className="font-mono text-lg font-bold text-foreground">
               Chief Technology Officer
@@ -55,9 +59,9 @@ const ExperienceSection = () => (
         ].map((proj) => (
           <div
             key={proj.title}
-            className="border border-border rounded-lg bg-card p-6 hover:border-terminal-green/20 transition-colors"
+            className="border border-border rounded-lg bg-card p-6 hover:border-terminal-green/20 hover:bg-white/[0.02] transition-all group"
           >
-            <proj.icon size={20} className="text-terminal-green mb-3" />
+            <proj.icon size={20} className="text-terminal-green mb-3 group-hover:rotate-12 transition-transform" />
             <h3 className="font-mono text-base font-semibold text-foreground mb-2">
               {proj.title}
             </h3>
@@ -68,7 +72,7 @@ const ExperienceSection = () => (
               {proj.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="font-mono text-xs px-2 py-1 border border-border rounded-sm text-terminal-dim"
+                  className="font-mono text-xs px-2 py-1 border border-border rounded-sm text-terminal-dim group-hover:text-terminal-green group-hover:border-terminal-green/30 transition-colors"
                 >
                   {tag}
                 </span>
