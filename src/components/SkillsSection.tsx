@@ -1,6 +1,6 @@
 import {
   Server, Container, Monitor, Globe, Shield, Network,
-  Cpu, CircuitBoard, Radio
+  Cpu, CircuitBoard, Radio, Database, HardDrive
 } from 'lucide-react';
 
 const categories = [
@@ -20,6 +20,15 @@ const categories = [
       { icon: Globe, name: 'Cloudflare Tunnels' },
       { icon: Shield, name: 'WireGuard' },
       { icon: Network, name: 'Mikrotik CHR' },
+    ],
+  },
+  {
+    title: 'Database & Storage',
+    color: 'text-terminal-green',
+    items: [
+      { icon: Database, name: 'MariaDB' },
+      { icon: Database, name: 'MySQL' },
+      { icon: HardDrive, name: 'ZFS / LVM Storage' },
     ],
   },
   {
@@ -46,7 +55,7 @@ const SkillsSection = () => {
         </h2>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {categories.map((cat) => (
             <div
               key={cat.title}
