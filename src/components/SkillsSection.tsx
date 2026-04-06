@@ -6,12 +6,12 @@ import {
 
 const categories = [
   {
-    title: 'Infrastructure',
+    title: 'Cloud & Infrastructure',
     color: 'text-terminal-cyan',
     items: [
       { icon: Server, name: 'Proxmox VE' },
       { icon: Container, name: 'Pterodactyl' },
-      { icon: Monitor, name: 'Windows Spectre' },
+      { icon: Globe, name: 'AWS' },
     ],
   },
   {
