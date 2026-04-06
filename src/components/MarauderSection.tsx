@@ -1,4 +1,4 @@
-import { Wifi, Shield, Radio, Cpu, HardDrive, Monitor } from 'lucide-react';
+import { Wifi, Shield, Radio, Cpu, HardDrive, Monitor, Zap, AlertTriangle } from 'lucide-react';
 
 const MarauderSection = () => {
   return (
@@ -38,6 +38,8 @@ const MarauderSection = () => {
               { icon: Cpu, label: 'ESP32 Dual-Core', desc: 'Xtensa LX6 @ 240MHz with Wi-Fi and BLE radios' },
               { icon: Monitor, label: 'TFT Display', desc: 'Real-time packet visualization and menu navigation' },
               { icon: HardDrive, label: 'SD Card Logging', desc: 'Persistent capture storage for post-analysis' },
+              { icon: Zap, label: 'Wemos D1 Mini Deauth', desc: 'ESP8266-based deauthentication attack platform for 802.11 audit testing' },
+              { icon: AlertTriangle, label: 'Evil Twin AP', desc: 'Rogue access point deployment for credential interception and network analysis' },
             ].map(({ icon: Icon, label, desc }) => (
               <div
                 key={label}
