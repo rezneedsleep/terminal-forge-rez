@@ -20,26 +20,27 @@ const HeroSection = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-bold leading-tight mb-6">
           <span className="glow-cyan text-terminal-cyan">
             <Typewriter
-              text="Optimizing Virtualization."
+              text="Who Is rez?"
               speed={45}
               onComplete={() => setShowSub(true)}
             />
           </span>
-          {showSub && (
-            <span className="block mt-2 glow-green text-terminal-green">
-              <Typewriter text="Securing the Physical World." speed={45} />
-            </span>
-          )}
         </h1>
 
-        {/* Sub-headline */}
+        {/* Introduction */}
         <div
           className={`transition-opacity duration-1000 ${showSub ? 'opacity-100' : 'opacity-0'}`}
         >
-          <p className="text-muted-foreground font-mono text-sm md:text-base max-w-2xl leading-relaxed mt-8">
+          <p className="text-muted-foreground font-mono text-sm md:text-base max-w-2xl leading-relaxed mt-4">
             <ChevronRight size={14} className="inline text-terminal-cyan mr-1" />
-            Proxmox virtualization architect. IoT firmware engineer. Building resilient
-            infrastructure and embedded systems that operate at the edge.
+            <span className="text-terminal-green font-semibold">Background:</span>{' '}
+            Technical Student specializing in IT Infrastructure and Embedded Systems.
+          </p>
+
+          <p className="text-muted-foreground font-mono text-sm md:text-base max-w-2xl leading-relaxed mt-4">
+            <ChevronRight size={14} className="inline text-terminal-cyan mr-1" />
+            <span className="text-terminal-green font-semibold">Core Expertise:</span>{' '}
+            Server Administration (Proxmox, Pterodactyl), Network Tunneling (Cloudflare, WireGuard), and IoT/Hardware Hacking.
           </p>
 
           <div className="flex flex-wrap gap-3 mt-8 font-mono text-xs">
@@ -53,6 +54,7 @@ const HeroSection = () => {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
