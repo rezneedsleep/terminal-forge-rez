@@ -1,7 +1,7 @@
 import {
   Server, Container, Monitor, Globe, Shield, Network,
   Cpu, CircuitBoard, Radio, Database, HardDrive,
-  Code, Terminal, Cog
+  Code, Terminal, Cog, Lock, ShieldCheck, Flame
 } from 'lucide-react';
 
 const categories = [
@@ -39,6 +39,15 @@ const categories = [
       { icon: Terminal, name: 'Linux / Bash' },
       { icon: Code, name: 'Node.js / Python' },
       { icon: Cog, name: 'Docker / LXC' },
+    ],
+  },
+  {
+    title: 'Security',
+    color: 'text-terminal-cyan',
+    items: [
+      { icon: Lock, name: 'Cloudflare SSL/TLS' },
+      { icon: ShieldCheck, name: 'VPN / WireGuard' },
+      { icon: Flame, name: 'Firewall Config (iptables)' },
     ],
   },
   {
