@@ -1,4 +1,4 @@
-import { Droplets, Wind, Building2 } from 'lucide-react';
+import { Droplets, Wind, Building2, Zap } from 'lucide-react';
 
 const ExperienceSection = () => (
   <section className="px-6 py-24">
@@ -45,6 +45,12 @@ const ExperienceSection = () => (
             title: 'Wind Turbine Simulator',
             desc: 'Embedded control system simulating turbine blade pitch and yaw dynamics. Sensor-driven feedback loop with real-time data logging.',
             tags: ['ESP32', 'Sensors', 'PWM'],
+          },
+          {
+            icon: Zap,
+            title: 'Wemos D1 Mini Deauth & Evil Twin',
+            desc: 'ESP8266-based wireless security tool performing 802.11 deauthentication attacks and evil twin access point deployment for network auditing.',
+            tags: ['ESP8266', 'Wi-Fi', 'Deauth'],
           },
         ].map((proj) => (
           <div
