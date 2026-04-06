@@ -19,7 +19,7 @@ const categories = [
     color: 'text-terminal-green',
     items: [
       { icon: Globe, name: 'Cloudflare Tunnels' },
-      { icon: Shield, name: 'WireGuard' },
+      { icon: Network, name: 'VLAN / DNS Management' },
       { icon: Network, name: 'Mikrotik CHR' },
     ],
   },
