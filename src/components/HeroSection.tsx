@@ -19,9 +19,9 @@ const HeroSection = () => {
 
         {/* Two-column layout */}
         <div className="flex flex-col sm:flex-row gap-10 items-start">
-          {/* Left: Text */}
-          <div className="flex-1 min-w-0">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-mono font-bold leading-tight mb-6">
+          {/* Left column ~60% */}
+          <div className="flex-[3] min-w-0">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-mono font-bold leading-tight mb-4">
               <span className="glow-cyan text-terminal-cyan">
                 <Typewriter
                   text="Who Is rez?"
@@ -32,7 +32,12 @@ const HeroSection = () => {
             </h1>
 
             <div className={`transition-opacity duration-1000 ${showSub ? 'opacity-100' : 'opacity-0'}`}>
+              {/* Personal intro */}
               <p className="text-muted-foreground font-mono text-sm md:text-base max-w-xl leading-relaxed mt-4">
+                Technical Student &amp; Embedded Systems Developer. Dedicated to building robust server infrastructures and secure IoT solutions. Expert in Virtualization, Network Tunneling, and Hardware Hacking.
+              </p>
+
+              <p className="text-muted-foreground font-mono text-sm md:text-base max-w-xl leading-relaxed mt-6">
                 <ChevronRight size={14} className="inline text-terminal-cyan mr-1" />
                 <span className="text-terminal-green font-semibold">Background:</span>{' '}
                 Technical Student specializing in IT Infrastructure and Embedded Systems.
@@ -43,24 +48,13 @@ const HeroSection = () => {
                 <span className="text-terminal-green font-semibold">Core Expertise:</span>{' '}
                 Server Administration (Proxmox, Pterodactyl), Network Tunneling (Cloudflare, WireGuard), and IoT/Hardware Hacking.
               </p>
-
-              <div className="flex flex-wrap gap-3 mt-8 font-mono text-xs">
-                {['PROXMOX', 'ESP32', 'WIREGUARD', 'CLOUDFLARE', 'ARDUINO'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 border border-border rounded-sm text-terminal-dim hover:text-terminal-cyan hover:border-terminal-cyan/30 transition-colors"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
 
-          {/* Right: Portrait */}
-          <div className={`flex-shrink-0 self-center sm:self-start sm:mt-2 transition-opacity duration-1000 ${showSub ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Right column ~40% - Portrait */}
+          <div className={`flex-[2] flex-shrink-0 self-center sm:self-start sm:mt-2 transition-opacity duration-1000 ${showSub ? 'opacity-100' : 'opacity-0'}`}>
             <div
-              className="relative w-52 h-52 md:w-60 md:h-60 lg:w-64 lg:h-64 rounded border border-terminal-cyan/30"
+              className="relative w-52 h-52 md:w-60 md:h-60 lg:w-64 lg:h-64 rounded border border-terminal-cyan/30 mx-auto"
               style={{
                 boxShadow: '0 0 20px hsl(185 100% 50% / 0.15), 0 0 40px hsl(185 100% 50% / 0.07)',
               }}
