@@ -18,7 +18,7 @@ const HeroSection = () => {
         </div>
 
         {/* Two-column layout */}
-        <div className="flex flex-col md:flex-row gap-10 items-start">
+        <div className="flex flex-col sm:flex-row gap-10 items-start">
           {/* Left: Text */}
           <div className="flex-1 min-w-0">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-mono font-bold leading-tight mb-6">
@@ -58,7 +58,7 @@ const HeroSection = () => {
           </div>
 
           {/* Right: Portrait */}
-          <div className={`flex-shrink-0 self-center md:self-start md:mt-2 transition-opacity duration-1000 ${showSub ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`flex-shrink-0 self-center sm:self-start sm:mt-2 transition-opacity duration-1000 ${showSub ? 'opacity-100' : 'opacity-0'}`}>
             <div
               className="relative w-52 h-52 md:w-60 md:h-60 lg:w-64 lg:h-64 rounded border border-terminal-cyan/30"
               style={{
