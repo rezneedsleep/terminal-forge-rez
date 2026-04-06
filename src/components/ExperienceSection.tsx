@@ -52,7 +52,6 @@ const ExperienceSection = () => (
             desc: 'ESP8266-based wireless security tool performing 802.11 deauthentication attacks and evil twin access point deployment for network auditing.',
             tags: ['ESP8266', 'Wi-Fi', 'Deauth'],
           },
-          },
         ].map((proj) => (
           <div
             key={proj.title}
