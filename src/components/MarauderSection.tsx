@@ -1,4 +1,4 @@
-import { Wifi, Shield, Radio, Cpu, SdCard, Monitor } from 'lucide-react';
+import { Wifi, Shield, Radio, Cpu, HardDrive, Monitor } from 'lucide-react';
 
 const MarauderSection = () => {
   return (
@@ -37,7 +37,7 @@ const MarauderSection = () => {
               { icon: Radio, label: 'BLE Sniffing', desc: 'Bluetooth Low Energy device discovery and enumeration' },
               { icon: Cpu, label: 'ESP32 Dual-Core', desc: 'Xtensa LX6 @ 240MHz with Wi-Fi and BLE radios' },
               { icon: Monitor, label: 'TFT Display', desc: 'Real-time packet visualization and menu navigation' },
-              { icon: SdCard, label: 'SD Card Logging', desc: 'Persistent capture storage for post-analysis' },
+              { icon: HardDrive, label: 'SD Card Logging', desc: 'Persistent capture storage for post-analysis' },
             ].map(({ icon: Icon, label, desc }) => (
               <div
                 key={label}
