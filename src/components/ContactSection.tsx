@@ -48,7 +48,7 @@ const ContactSection = () => {
               }
             </button>
 
-            <a href="https://wa.me/62XXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="fade-in-5 flex items-center gap-4 p-4 border border-border rounded-md bg-background hover:border-terminal-cyan/40 transition-colors group">
+            <a href="https://wa.me/1XXXXXXXX" target="_blank" rel="noopener noreferrer" className="fade-in-5 flex items-center gap-4 p-4 border border-border rounded-md bg-background hover:border-terminal-cyan/40 transition-colors group">
               <Phone size={20} className="text-terminal-cyan" />
               <div>
                 <p className="font-mono text-xs text-terminal-dim mb-1">WhatsApp</p>
