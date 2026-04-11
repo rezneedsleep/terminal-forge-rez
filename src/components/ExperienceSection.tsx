@@ -2,7 +2,7 @@ import { Droplets, Wind, Building2, Zap } from 'lucide-react';
 
 const ExperienceSection = () => (
   // Tambahkan id="work" di sini
-  <section id="work" className="px-6 py-24 scroll-mt-20">
+  <section id="work" className="px-6 py-24 scroll-mt-20 section-animate">
     <div className="max-w-5xl mx-auto"> 
         {/* Prompt Terminal - Ukuran sama dengan Hero, tanpa icon terminal */}
         <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
@@ -15,21 +15,24 @@ const ExperienceSection = () => (
         Experience
       </h2>
 
-      <div className="border border-border rounded-lg bg-card p-6 md:p-8 mb-10 hover:border-terminal-cyan/20 transition-all duration-300 group">
-        <div className="flex items-start gap-4">
-          <Building2 size={22} className="text-terminal-cyan mt-1 shrink-0 group-hover:scale-110 transition-transform" />
-          <div>
-            <h3 className="font-mono text-lg font-bold text-foreground">
-              Chief Technology Officer
-            </h3>
-            <p className="font-mono text-sm text-terminal-cyan mb-3">Bytenodes</p>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Leading technical strategy, infrastructure architecture, and engineering operations.
-              Overseeing server virtualization, network security, and embedded systems development.
-            </p>
-          </div>
-        </div>
+  <a href="https://bytenodes.icu" target="_blank" rel="noopener noreferrer" className="border border-border rounded-lg bg-card p-6 md:p-8 mb-10 hover:border-terminal-cyan/20 transition-all duration-300 group block">
+  <div className="flex items-start gap-4">
+    <Building2 size={22} className="text-terminal-cyan mt-1 shrink-0 group-hover:scale-110 transition-transform" />
+    <div>
+      <div className="flex items-center justify-between mb-1">
+        <h3 className="font-mono text-lg font-bold text-foreground">
+          Chief Technology Officer
+        </h3>
+        <span className="font-mono text-xs text-terminal-dim">2024 — Present</span>
       </div>
+      <p className="font-mono text-sm text-terminal-cyan mb-3">Bytenodes</p>
+      <p className="text-muted-foreground text-sm leading-relaxed">
+        Leading technical strategy, infrastructure architecture, and engineering operations.
+        Overseeing server virtualization, network security, and embedded systems development.
+      </p>
+    </div>
+  </div>
+</a>
 
       {/* Projects sub-section */}
       <h3 className="font-mono text-lg font-semibold text-foreground mb-6">

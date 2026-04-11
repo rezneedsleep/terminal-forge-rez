@@ -2,7 +2,7 @@ import { Wifi, Shield, Radio, Cpu, HardDrive, Monitor, Bluetooth, Zap } from 'lu
 
 const FeaturedProjectsSection = () => {
   return (
-  <section className="px-6 py-24 scroll-mt-20">
+  <section className="px-6 py-24 scroll-mt-20 section-animate">
       <div className="max-w-5xl mx-auto"> 
         {/* Prompt Terminal - Ukuran sama dengan Hero, tanpa icon terminal */}
         <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">

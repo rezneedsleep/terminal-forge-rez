@@ -11,7 +11,7 @@ const HeroSection = () => {
     <section id="about" className="min-h-screen flex items-center justify-center px-6 relative scroll-mt-20">
       <div className="max-w-5xl w-full">
         {/* Terminal prompt */}
-        <div className="flex items-center gap-3 mb-6 text-terminal-dim font-mono text-sm">
+        <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
           <Terminal size={16} />
           <span>rez@infra-audit:~$</span>
           <span className="text-terminal-green">cat</span>
@@ -70,13 +70,10 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right ~40% */}
+         {/* Right ~40% */}
           <div className={`flex-[2] flex-shrink-0 transition-opacity duration-1000 ${showSub ? 'opacity-100' : 'opacity-0'}`}>
             <div
               className="w-48 h-48 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-64 lg:h-64 rounded border border-terminal-cyan/30 mx-auto overflow-hidden relative group"
-              style={{
-                boxShadow: '0 0 20px hsl(185 100% 50% / 0.15), 0 0 40px hsl(185 100% 50% / 0.07)',
-              }}
             >
               <img
                 src={portraitSrc}
@@ -86,7 +83,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
             </div>
             <div className="mt-3 text-center font-mono text-[10px] text-terminal-dim">
-              [ ASSET_ID: rez.png ]
+              [ SRC_PATH: ~/users/rez ]
             </div>
           </div>
         </div>
