@@ -5,7 +5,7 @@ const FooterSection = () => (
         © {new Date().getFullYear()} rez — Server Infrastructure & Embedded Systems
       </p>
       <p className="font-mono text-xs text-terminal-dim">
-        <span className="text-terminal-green">●</span> All systems operational
+        <span className="text-terminal-green cursor-blink">●</span> All System Operational
       </p>
     </div>
   </footer>
