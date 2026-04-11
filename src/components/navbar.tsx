@@ -14,7 +14,7 @@ const Navbar = () => {
           About
         </a>
 
-        <a href="mailto:zyxienn@vstn.cloud" className="font-mono text-[11px] tracking-[0.3em] uppercase px-4 py-2 border border-terminal-cyan/50 text-terminal-cyan hover:bg-terminal-cyan/10 transition-colors">
+        <a href="#contact" className="font-mono text-[11px] tracking-[0.3em] uppercase px-4 py-2 border border-terminal-cyan/50 text-terminal-cyan hover:bg-terminal-cyan/10 transition-colors">
           Contact
         </a>
       </div>
