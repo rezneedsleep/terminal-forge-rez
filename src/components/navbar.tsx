@@ -1,8 +1,28 @@
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 10) {
+        setVisible(true);
+      } else if (currentScrollY < lastScrollY) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   const handleNav = (hash: string) => {
     if (location.pathname !== '/') {
@@ -13,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-black/20 backdrop-blur-sm border-b border-white/5">
+    <nav className={`fixed top-0 left-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-black/20 backdrop-blur-sm border-b border-white/5 transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
       <a href="/" className="font-mono text-sm tracking-[0.2em] text-white/90 hover:text-terminal-cyan transition-colors">
         rez
       </a>
