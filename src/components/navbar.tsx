@@ -17,22 +17,16 @@ const Navbar = () => {
       <a href="/" className="font-mono text-sm tracking-[0.2em] text-white/90 hover:text-terminal-cyan transition-colors">
         rez
       </a>
-
       <div className="flex gap-8 items-center">
-        <button
-          onClick={() => handleNav('#work')}
-          className="font-mono text-[11px] tracking-[0.3em] text-terminal-dim hover:text-terminal-cyan transition-colors uppercase bg-transparent border-none cursor-pointer"
-        >
+        <button onClick={() => handleNav('#work')} className="font-mono text-[11px] tracking-[0.3em] text-terminal-dim hover:text-terminal-cyan transition-colors uppercase bg-transparent border-none cursor-pointer">
           Work
         </button>
-
-        <button
-          onClick={() => handleNav('#about')}
-          className="font-mono text-[11px] tracking-[0.3em] text-terminal-dim hover:text-terminal-cyan transition-colors uppercase bg-transparent border-none cursor-pointer"
-        >
+        <button onClick={() => handleNav('#about')} className="font-mono text-[11px] tracking-[0.3em] text-terminal-dim hover:text-terminal-cyan transition-colors uppercase bg-transparent border-none cursor-pointer">
           About
         </button>
-
+        <a href="https://blog.vstn.cloud" target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] tracking-[0.3em] text-terminal-dim hover:text-terminal-cyan transition-colors uppercase">
+          Logs
+        </a>
         <a href="/contact" className="font-mono text-[11px] tracking-[0.3em] uppercase px-4 py-2 border border-terminal-cyan/50 text-terminal-cyan hover:bg-terminal-cyan/10 transition-colors">
           Contact
         </a>
