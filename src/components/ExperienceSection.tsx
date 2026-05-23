@@ -1,7 +1,6 @@
 import { Droplets, Wind, Building2, Zap } from 'lucide-react';
 
 const ExperienceSection = () => (
-  // Tambahkan id="work" di sini
   <section id="work" className="px-6 py-24 scroll-mt-20 section-animate">
     <div className="max-w-5xl mx-auto"> 
         {/* Prompt Terminal - Ukuran sama dengan Hero, tanpa icon terminal */}
@@ -23,7 +22,7 @@ const ExperienceSection = () => (
         <h3 className="font-mono text-lg font-bold text-foreground">
           Chief Technology Officer
         </h3>
-        <span className="font-mono text-xs text-terminal-dim">2024 — Present</span>
+        <span className="font-mono text-xs text-terminal-dim">2025 — Present</span>
       </div>
       <p className="font-mono text-sm text-terminal-cyan mb-3">Bytenodes</p>
       <p className="text-muted-foreground text-sm leading-relaxed">
