@@ -1,8 +1,8 @@
 import {
-  Server, Container, Monitor, Globe, Shield, Network,
-  Cpu, CircuitBoard, Radio, Database, HardDrive,
+  Server, Container, Globe, Network,
+  Database, HardDrive,
   Code, Terminal, Cog, Lock, ShieldCheck, Flame,
-  Layers, Palette, Zap, GitBranch, Box, BarChart2
+  Layers, Palette, Zap, Box
 } from 'lucide-react';
 
 const categories = [
@@ -11,7 +11,7 @@ const categories = [
     color: 'text-terminal-cyan',
     items: [
       { icon: Server, name: 'Proxmox VE' },
-      { icon: Container, name: 'Pterodactyl' },
+      { icon: Container, name: 'Docker' },
       { icon: Globe, name: 'AWS' },
     ],
   },
@@ -30,7 +30,6 @@ const categories = [
     items: [
       { icon: Database, name: 'MariaDB' },
       { icon: Database, name: 'MySQL' },
-      { icon: Database, name: 'Supabase / PostgreSQL' },
       { icon: HardDrive, name: 'ZFS / LVM Storage' },
     ],
   },
@@ -50,8 +49,6 @@ const categories = [
       { icon: Layers, name: 'React / Vite' },
       { icon: Palette, name: 'Tailwind CSS' },
       { icon: Zap, name: 'JavaScript / JSX' },
-      { icon: BarChart2, name: 'Recharts' },
-      { icon: GitBranch, name: 'Git / GitHub' },
     ],
   },
   {
@@ -61,15 +58,6 @@ const categories = [
       { icon: Lock, name: 'Cloudflare SSL/TLS' },
       { icon: ShieldCheck, name: 'VPN / WireGuard' },
       { icon: Flame, name: 'Firewall Config (iptables)' },
-    ],
-  },
-  {
-    title: 'Embedded Systems',
-    color: 'text-terminal-green',
-    items: [
-      { icon: Cpu, name: 'ESP32' },
-      { icon: CircuitBoard, name: 'Arduino' },
-      { icon: Radio, name: 'HC-SR04 / I2C LCD' },
     ],
   },
 ];
