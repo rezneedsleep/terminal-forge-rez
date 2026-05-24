@@ -1,7 +1,8 @@
 import {
   Server, Container, Monitor, Globe, Shield, Network,
   Cpu, CircuitBoard, Radio, Database, HardDrive,
-  Code, Terminal, Cog, Lock, ShieldCheck, Flame
+  Code, Terminal, Cog, Lock, ShieldCheck, Flame,
+  Layers, Palette, Zap, GitBranch, Box, BarChart2
 } from 'lucide-react';
 
 const categories = [
@@ -29,6 +30,7 @@ const categories = [
     items: [
       { icon: Database, name: 'MariaDB' },
       { icon: Database, name: 'MySQL' },
+      { icon: Database, name: 'Supabase / PostgreSQL' },
       { icon: HardDrive, name: 'ZFS / LVM Storage' },
     ],
   },
@@ -39,6 +41,17 @@ const categories = [
       { icon: Terminal, name: 'Linux / Bash' },
       { icon: Code, name: 'Node.js / Python' },
       { icon: Cog, name: 'Docker / LXC' },
+    ],
+  },
+  {
+    title: 'Frontend',
+    color: 'text-[#7986cb]',
+    items: [
+      { icon: Layers, name: 'React / Vite' },
+      { icon: Palette, name: 'Tailwind CSS' },
+      { icon: Zap, name: 'JavaScript / JSX' },
+      { icon: BarChart2, name: 'Recharts' },
+      { icon: GitBranch, name: 'Git / GitHub' },
     ],
   },
   {
@@ -65,7 +78,6 @@ const SkillsSection = () => {
   return (
     <section className="px-6 py-24 scroll-mt-20 section-animate">
       <div className="max-w-5xl mx-auto"> 
-        {/* Prompt Terminal - Ukuran sama dengan Hero, tanpa icon terminal */}
         <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
           <span className="text-terminal-green">$</span>
           <span className="text-terminal-green">cat</span>
@@ -76,7 +88,6 @@ const SkillsSection = () => {
           Technical Stack
         </h2>
 
-        {/* Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((cat) => (
             <div
