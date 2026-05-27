@@ -1,4 +1,4 @@
-import { Wifi, Shield, Radio, Cpu, HardDrive, Monitor, Bluetooth, Zap, Link, BarChart2, Trash2, Activity, DollarSign, Scale, CheckSquare, Sparkles } from 'lucide-react';
+import { Wifi, Shield, Radio, Cpu, HardDrive, Monitor, Bluetooth, Zap, Link, BarChart2, Trash2, Activity, DollarSign, Scale, CheckSquare, Sparkles, BookOpen, ClipboardList, Users, Bell } from 'lucide-react';
 
 const FeaturedProjectsSection = () => {
   return (
@@ -204,6 +204,62 @@ const FeaturedProjectsSection = () => {
               target="_blank"
               rel="noreferrer"
               className="font-mono text-xs px-4 py-2 border border-[#8da399]/40 text-[#8da399] rounded hover:bg-[#8da399]/10 transition-colors"
+            >
+              Visit Project {'\u2192'}
+            </a>
+          </div>
+        </div>
+
+        {/* EduTrack */}
+        <div className="border border-border rounded-lg bg-card p-6 md:p-10 relative overflow-hidden mt-6" style={{ boxShadow: '0 0 15px hsl(38 75% 60% / 0.1), inset 0 0 15px hsl(38 75% 60% / 0.03)' }}>
+          <div className="absolute top-0 left-0 w-16 h-px bg-[#e6a855]/40" />
+          <div className="absolute top-0 left-0 h-16 w-px bg-[#e6a855]/40" />
+          <div className="absolute bottom-0 right-0 w-16 h-px bg-[#e6a855]/40" />
+          <div className="absolute bottom-0 right-0 h-16 w-px bg-[#e6a855]/40" />
+
+          <div className="flex items-center gap-3 mb-6">
+            <BookOpen className="text-[#e6a855]" size={24} />
+            <h2 className="text-2xl md:text-3xl font-mono font-bold text-foreground">
+              EduTrack
+            </h2>
+          </div>
+
+          <p className="text-muted-foreground font-mono text-sm leading-relaxed mb-8 max-w-3xl">
+            An academic tracking platform for students to manage schedules, assignments, and grades
+            in one streamlined dashboard. Built for productivity and academic success —
+            accessible at{' '}
+            <a href="https://edutrack.davinn.net" target="_blank" rel="noreferrer" className="text-[#e6a855] hover:underline">
+              edutrack.davinn.net
+            </a>.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {[
+              { icon: BookOpen, label: 'Course Management', desc: 'Organize courses, subjects, and semester schedules in a unified view' },
+              { icon: ClipboardList, label: 'Assignment Tracker', desc: 'Track assignments, deadlines, and submission status with priority sorting' },
+              { icon: BarChart2, label: 'Grade Analytics', desc: 'Visualize academic performance with interactive grade charts and GPA trends' },
+              { icon: Bell, label: 'Deadline Reminders', desc: 'Get notified of upcoming due dates and never miss a submission again' },
+              { icon: Users, label: 'Student Dashboard', desc: 'Personalized overview with quick access to all academic activities' },
+              { icon: Monitor, label: 'Responsive UI', desc: 'Clean, modern interface optimized for both desktop and mobile devices' },
+            ].map(({ icon: Icon, label, desc }) => (
+              <div key={label} className="p-4 border border-border rounded-md bg-background hover:border-[#e6a855]/30 transition-colors">
+                <Icon size={18} className="text-[#e6a855] mb-2" />
+                <h3 className="font-mono text-sm font-semibold text-foreground mb-1">{label}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-t border-border pt-4 flex items-center justify-between flex-wrap gap-3">
+            <p className="font-mono text-xs text-terminal-dim">
+              <span className="text-[#e6a855] mr-2">{'\u2192'}</span>
+              Stack: React · Vite · Tailwind CSS · Supabase
+            </p>
+            <a
+              href="https://edutrack.davinn.net"
+              target="_blank"
+              rel="noreferrer"
+              className="font-mono text-xs px-4 py-2 border border-[#e6a855]/40 text-[#e6a855] rounded hover:bg-[#e6a855]/10 transition-colors"
             >
               Visit Project {'\u2192'}
             </a>
