@@ -8,7 +8,7 @@ const HeroSection = () => {
 
   return (
     // Tambahkan id="about" di sini
-    <section id="about" className="min-h-screen flex items-center justify-center px-6 relative scroll-mt-20">
+    <section id="about" className="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 sm:pt-0 relative scroll-mt-20">
       <div className="max-w-5xl w-full">
         {/* Terminal prompt */}
         <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
@@ -37,7 +37,7 @@ const HeroSection = () => {
             </p>
 
             {/* Social Links Section */}
-            <div className={`mt-8 flex flex-wrap gap-8 transition-all duration-1000 delay-300 ${showSub ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`mt-6 sm:mt-8 flex flex-wrap gap-4 sm:gap-8 transition-all duration-1000 delay-300 ${showSub ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <a 
                 href="https://github.com/rezneedsleep" 
                 target="_blank" 

@@ -143,3 +143,12 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Mobile menu fade-in */
+@keyframes menuFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: menuFadeIn 0.25s ease forwards;
+}

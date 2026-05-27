@@ -1,7 +1,7 @@
 import { Droplets, Wind, Building2, Zap } from 'lucide-react';
 
 const ExperienceSection = () => (
-  <section id="work" className="px-6 py-24 scroll-mt-20 section-animate">
+  <section id="work" className="px-4 sm:px-6 py-24 scroll-mt-20 section-animate">
     <div className="max-w-5xl mx-auto"> 
         {/* Prompt Terminal - Ukuran sama dengan Hero, tanpa icon terminal */}
         <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
@@ -18,8 +18,8 @@ const ExperienceSection = () => (
   <div className="flex items-start gap-4">
     <Building2 size={22} className="text-terminal-cyan mt-1 shrink-0 group-hover:scale-110 transition-transform" />
     <div>
-      <div className="flex items-center justify-between mb-1">
-        <h3 className="font-mono text-lg font-bold text-foreground">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1 gap-1">
+        <h3 className="font-mono text-base sm:text-lg font-bold text-foreground">
           Chief Technology Officer
         </h3>
         <span className="font-mono text-xs text-terminal-dim">2025 — Present</span>

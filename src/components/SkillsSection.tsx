@@ -64,7 +64,7 @@ const categories = [
 
 const SkillsSection = () => {
   return (
-    <section className="px-6 py-24 scroll-mt-20 section-animate">
+    <section className="px-4 sm:px-6 py-24 scroll-mt-20 section-animate">
       <div className="max-w-5xl mx-auto"> 
         <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
           <span className="text-terminal-green">$</span>

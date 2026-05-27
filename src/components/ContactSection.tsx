@@ -11,7 +11,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="px-6 py-24 scroll-mt-20">
+    <section id="contact" className="px-4 sm:px-6 py-24 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
         <div className="fade-in-1 flex items-center gap-2 mb-10 text-terminal-dim font-mono text-sm">
           <span className="text-terminal-green">$</span>
