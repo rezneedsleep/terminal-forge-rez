@@ -1,8 +1,8 @@
 import {
   Server, Container, Globe, Network,
   Database, HardDrive,
-  Code, Terminal, Cog, Lock, ShieldCheck, Flame,
-  Layers, Palette, Zap, Box
+  Code, Terminal, Cog, ShieldCheck, Flame,
+  Layers, Palette, Zap, Monitor
 } from 'lucide-react';
 
 const categories = [
@@ -10,7 +10,7 @@ const categories = [
     title: 'Cloud & Infrastructure',
     color: 'text-terminal-cyan',
     items: [
-      { icon: Server, name: 'Proxmox VE' },
+      { icon: Server, name: 'Proxmox VE / KVM' },
       { icon: Container, name: 'Docker' },
       { icon: Globe, name: 'AWS' },
     ],
@@ -21,14 +21,14 @@ const categories = [
     items: [
       { icon: Globe, name: 'Cloudflare Tunnels' },
       { icon: Network, name: 'VLAN / DNS Management' },
-      { icon: Network, name: 'Mikrotik CHR' },
+      { icon: Network, name: 'MikroTik CHR' },
     ],
   },
   {
     title: 'Database & Storage',
     color: 'text-terminal-green',
     items: [
-      { icon: Database, name: 'MariaDB' },
+      { icon: Database, name: 'InnoDB' },
       { icon: Database, name: 'MySQL' },
       { icon: HardDrive, name: 'ZFS / LVM Storage' },
     ],
@@ -39,12 +39,12 @@ const categories = [
     items: [
       { icon: Terminal, name: 'Linux / Bash' },
       { icon: Code, name: 'Node.js / Python' },
-      { icon: Cog, name: 'Docker / LXC' },
+      { icon: Cog, name: 'LXC / LXD' },
     ],
   },
   {
     title: 'Frontend',
-    color: 'text-[#7986cb]',
+    color: 'text-[#9fa8da]',
     items: [
       { icon: Layers, name: 'React / Vite' },
       { icon: Palette, name: 'Tailwind CSS' },
@@ -52,12 +52,12 @@ const categories = [
     ],
   },
   {
-    title: 'Security',
+    title: 'Security & Web Server',
     color: 'text-terminal-cyan',
     items: [
-      { icon: Lock, name: 'Cloudflare SSL/TLS' },
       { icon: ShieldCheck, name: 'VPN / WireGuard' },
-      { icon: Flame, name: 'Firewall Config (iptables)' },
+      { icon: Flame, name: 'Firewall (iptables / UFW)' },
+      { icon: Monitor, name: 'Nginx Proxy Manager' },
     ],
   },
 ];
@@ -69,7 +69,7 @@ const SkillsSection = () => {
         <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
           <span className="text-terminal-green">$</span>
           <span className="text-terminal-green">cat</span>
-          <span> ls -la skills</span>
+          <span>skills.json</span>
         </div>
 
         <h2 className="text-2xl md:text-3xl font-mono font-bold text-foreground mb-10">

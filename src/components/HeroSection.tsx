@@ -33,7 +33,7 @@ const HeroSection = () => {
             </h1>
 
             <p className={`text-muted-foreground font-mono text-sm md:text-base max-w-xl leading-relaxed transition-opacity duration-1000 ${showSub ? 'opacity-100' : 'opacity-0'}`}>
-              Technical Student &amp; Embedded Systems Developer. Dedicated to building robust server infrastructures and secure IoT solutions. Expert in Virtualization, Network Tunneling, and Hardware Hacking.
+              I build embedded systems (ESP32, Arduino), manage my own server stack on Proxmox and Docker, and do full-stack web dev with React and Vite. Most of my free time goes toward wireless security research and self-hosted infrastructure
             </p>
 
             {/* Social Links Section */}
