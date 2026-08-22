@@ -79,6 +79,8 @@
     hsla(0, 0%, 0%, 0.03) 2px,
     hsla(0, 0%, 0%, 0.03) 4px
   );
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Grid pattern */
@@ -87,6 +89,7 @@
     linear-gradient(hsla(185, 100%, 50%, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, hsla(185, 100%, 50%, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
+  background-attachment: local;
 }
 
 /* Terminal cursor blink */
@@ -151,4 +154,17 @@
 }
 .animate-fade-in {
   animation: menuFadeIn 0.25s ease forwards;
+}
+
+/* Project card scan line */
+@keyframes scan {
+  0% { top: 0; }
+  50% { top: 100%; }
+  100% { top: 0; }
+}
+
+/* Feature card hover glow (pure CSS, no JS state) */
+.feature-card:hover {
+  border-color: var(--glow-color, hsl(185 100% 50%));
+  box-shadow: 0 0 20px -5px var(--glow-color, hsl(185 100% 50%));
 }
