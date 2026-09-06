@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronUp } from 'lucide-react';
 
-const BackToTop = () => {
+const BackToTop: React.FC = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -16,14 +16,14 @@ const BackToTop = () => {
     <button
       onClick={scrollToTop}
       aria-label="Back to top"
-      className={`fixed bottom-6 right-6 z-40 group flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase px-3 py-2.5 rounded border border-terminal-cyan/30 bg-background/90 text-terminal-cyan backdrop-blur-sm transition-all duration-300 hover:border-terminal-cyan/60 hover:shadow-[0_0_15px_-3px] hover:shadow-terminal-cyan/20 ${
+      className={`fixed bottom-9 right-4 sm:right-6 z-40 group flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase px-3 py-2 border border-[#2e2e36] bg-[#121216]/95 text-zinc-300 backdrop-blur-sm transition-all duration-300 hover:border-zinc-500 hover:text-white hover:bg-[#18181e] cursor-pointer ${
         visible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >
-      <ChevronUp size={14} className="transition-transform group-hover:-translate-y-0.5" />
-      <span className="hidden sm:inline">cd ~</span>
+      <ChevronUp size={13} className="transition-transform group-hover:-translate-y-0.5 text-zinc-400 group-hover:text-white" />
+      <span>[ESC] cd ~</span>
     </button>
   );
 };

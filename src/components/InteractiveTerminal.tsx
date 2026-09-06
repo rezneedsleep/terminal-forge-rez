@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Terminal as TerminalIcon } from 'lucide-react';
+import TextScramble from '@/components/TextScramble';
+import { playKeySound, playBeepSound } from '@/lib/terminalAudio';
 
 /* ── command definitions ──────────────────────────────────── */
 interface OutputLine {
@@ -25,16 +27,14 @@ const COMMANDS: Record<string, { desc: string; run: () => OutputLine[] }> = {
   identity: {
     desc: 'Display user identity',
     run: () => [
-      { text: '┌──────────────────────────────────────────┐', color: 'text-terminal-cyan' },
-      { text: '│  IDENTITY CARD                           │', color: 'text-terminal-cyan' },
-      { text: '├──────────────────────────────────────────┤', color: 'text-terminal-cyan' },
-      { text: '│  Name      : Rezky (rez)               │', color: 'text-foreground' },
-      { text: '│  Role      : Chief Technology Officer     │', color: 'text-foreground' },
-      { text: '│  Org       : Bytenodes                   │', color: 'text-foreground' },
-      { text: '│  Domain    : vstn.cloud                  │', color: 'text-foreground' },
-      { text: '│  Focus     : Infrastructure & Embedded   │', color: 'text-foreground' },
-      { text: '│  Location  : Indonesia 🇮🇩                │', color: 'text-foreground' },
-      { text: '└──────────────────────────────────────────┘', color: 'text-terminal-cyan' },
+      { text: '┌──────────────────────────────────────────┐', color: 'text-zinc-400' },
+      { text: '│  IDENTITY CARD                           │', color: 'text-zinc-200' },
+      { text: '├──────────────────────────────────────────┤', color: 'text-zinc-400' },
+      { text: '│  Name      : Rezky (rez)                 │', color: 'text-zinc-300' },
+      { text: '│  Domain    : vstn.cloud                  │', color: 'text-zinc-300' },
+      { text: '│  Focus     : Infrastructure & Embedded   │', color: 'text-zinc-300' },
+      { text: '│  Location  : Indonesia 🇮🇩                │', color: 'text-zinc-300' },
+      { text: '└──────────────────────────────────────────┘', color: 'text-zinc-400' },
     ],
   },
 
@@ -96,14 +96,12 @@ const COMMANDS: Record<string, { desc: string; run: () => OutputLine[] }> = {
   contact: {
     desc: 'Show contact info',
     run: () => [
-      { text: '── CONTACT ──', color: 'text-terminal-cyan' },
+      { text: '── CONTACT & TRANSMISSION ──', color: 'text-zinc-200' },
       { text: '' },
-      { text: '  Email     : zyxienn@vstn.cloud', color: 'text-foreground' },
-      { text: '  GitHub    : github.com/rezneedsleep', color: 'text-foreground' },
-      { text: '  Instagram : @rez.css', color: 'text-foreground' },
-      { text: '  Discord   : rez (864702111542673428)', color: 'text-foreground' },
+      { text: '  Email     : zyxienn21@gmail.com', color: 'text-zinc-100' },
+      { text: '  WhatsApp  : +62 8•• •••• •••• (Direct Relay)', color: 'text-zinc-300' },
       { text: '' },
-      { text: '  Available for freelance & consulting.', color: 'text-terminal-dim' },
+      { text: '  Available for freelance, systems & consulting.', color: 'text-zinc-500' },
     ],
   },
 
@@ -144,6 +142,7 @@ const InteractiveTerminal = () => {
 
     if (!cmd) return;
 
+    playBeepSound();
     setCmdHistory((prev) => [...prev, cmd]);
     setHistoryIdx(-1);
 
@@ -170,6 +169,7 @@ const InteractiveTerminal = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    playKeySound();
     if (e.key === 'Enter') {
       runCommand(input);
       setInput('');
@@ -196,57 +196,91 @@ const InteractiveTerminal = () => {
   };
 
   return (
-    <section className="px-4 sm:px-6 py-24 scroll-mt-20 section-animate">
-      <div className="max-w-5xl mx-auto">
+    <section id="terminal" className="w-full py-2 scroll-mt-14">
+      <div className="w-full">
         {/* Section prompt */}
-        <div className="flex items-center gap-2 mb-6 text-terminal-dim font-mono text-sm">
-          <span className="text-terminal-green">$</span>
-          <span className="text-terminal-green">./</span>
-          <span>interactive_shell.sh</span>
+        <div className="flex items-center justify-between gap-2 mb-3 text-zinc-500 font-mono text-xs select-none">
+          <div className="flex items-center gap-2">
+            <span className="text-zinc-300">$</span>
+            <span className="text-zinc-200">./</span>
+            <span className="text-zinc-400">
+              <TextScramble text="interactive_shell.sh" />
+            </span>
+            <span className="cursor-block text-zinc-500 text-[9px]" />
+          </div>
+          <span className="text-[10px] text-zinc-600 tracking-wider">[HOTKEY: T]</span>
         </div>
 
-        <h2 className="text-2xl md:text-3xl font-mono font-bold text-foreground mb-6">
-          Terminal
-        </h2>
-        <p className="text-muted-foreground font-mono text-sm mb-8 max-w-xl">
-          Try running some commands — just like a real shell.
-        </p>
+        <div className="text-[11px] font-bold tracking-[0.2em] text-zinc-300 uppercase mb-2 flex items-center gap-2 select-none">
+          <span>TERMINAL SHELL</span>
+          <span className="h-px bg-zinc-800 flex-1" />
+        </div>
 
-        {/* Terminal window */}
-        <div className="border border-border rounded-lg overflow-hidden bg-[hsl(0,0%,5%)]">
+        {/* Terminal window with ASCII Corners */}
+        <div className="border border-[#27272a] bg-[#0c0c0f] shadow-lg relative">
+          {/* Corner ASCII brackets */}
+          <span className="absolute top-1 left-1.5 font-mono text-[10px] text-zinc-600 select-none z-10">┌</span>
+          <span className="absolute top-1 right-1.5 font-mono text-[10px] text-zinc-600 select-none z-10">┐</span>
+          <span className="absolute bottom-1 left-1.5 font-mono text-[10px] text-zinc-600 select-none z-10">└</span>
+          <span className="absolute bottom-1 right-1.5 font-mono text-[10px] text-zinc-600 select-none z-10">┘</span>
+
           {/* Title bar */}
-          <div className="flex items-center gap-3 px-4 py-2.5 border-b border-border bg-black/50">
-            <div className="flex gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-              <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+          <div className="flex items-center justify-between px-3 py-2 border-b border-[#222226] bg-[#121216] select-none pl-5">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#3a3a40]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a30]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#222227]" />
+              </div>
+              <div className="flex items-center gap-1.5 ml-1 sm:ml-2">
+                <TerminalIcon size={12} className="text-zinc-400" />
+                <span className="font-mono text-[10px] sm:text-[11px] text-zinc-300 tracking-wider">
+                  rez@vstn:~ (sh)
+                </span>
+              </div>
             </div>
-            <div className="flex items-center gap-1.5">
-              <TerminalIcon size={12} className="text-terminal-dim" />
-              <span className="font-mono text-[11px] text-terminal-dim tracking-wider">
-                rez@vstn:~
-              </span>
+
+            <div className="hidden sm:block text-[10px] text-zinc-500 font-mono pr-4">
+              TYPE &apos;help&apos; OR &apos;status&apos;
             </div>
+          </div>
+
+          {/* Quick command buttons for mobile tap-to-run */}
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0a0a0d] border-b border-[#1c1c20] overflow-x-auto whitespace-nowrap scrollbar-none touch-pan-x text-[10px] font-mono">
+            <span className="text-zinc-500 select-none text-[9px] mr-1">QUICK:</span>
+            {['help', 'status', 'projects', 'skills', 'identity', 'clear'].map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => {
+                  playKeySound();
+                  runCommand(c);
+                }}
+                className="px-2 py-0.5 bg-[#141418] hover:bg-[#222228] active:bg-[#2c2c34] border border-[#27272e] text-zinc-300 hover:text-white rounded-none cursor-pointer transition-colors"
+              >
+                [{c}]
+              </button>
+            ))}
           </div>
 
           {/* Output area */}
           <div
             ref={scrollRef}
-            className="p-4 sm:p-6 h-[400px] sm:h-[500px] overflow-y-auto font-mono text-xs sm:text-sm leading-relaxed space-y-4 scroll-smooth"
+            className="p-3 sm:p-6 h-[320px] sm:h-[480px] overflow-y-auto font-mono text-xs sm:text-sm leading-relaxed space-y-3 scroll-smooth bg-[#08080a]"
             onClick={() => inputRef.current?.focus()}
           >
             {history.map((entry, i) => (
               <div key={i}>
                 {/* Show prompt + command for non-initial entries */}
                 {entry.input && (
-                  <div className="flex items-center gap-2 text-terminal-dim mb-1">
-                    <span className="text-terminal-green">rez@vstn:~$</span>
-                    <span className="text-foreground">{entry.input}</span>
+                  <div className="flex items-center gap-2 text-zinc-500 mb-1">
+                    <span className="text-zinc-300">rez@vstn:~$</span>
+                    <span className="text-white font-semibold">{entry.input}</span>
                   </div>
                 )}
                 {/* Output lines */}
                 {entry.output.map((line, j) => (
-                  <div key={j} className={line.color || 'text-foreground'}>
+                  <div key={j} className={line.color || 'text-zinc-300'}>
                     {line.text || '\u00A0'}
                   </div>
                 ))}
@@ -254,19 +288,24 @@ const InteractiveTerminal = () => {
             ))}
 
             {/* Active prompt */}
-            <div className="flex items-center gap-2">
-              <span className="text-terminal-green whitespace-nowrap">rez@vstn:~$</span>
+            <div className="flex items-center gap-2 pt-1">
+              <span className="text-zinc-300 font-semibold whitespace-nowrap text-xs sm:text-sm">rez@vstn:~$</span>
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={(e) => {
+                  playKeySound();
+                  setInput(e.target.value);
+                }}
                 onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent outline-none text-foreground font-mono caret-terminal-cyan"
+                className="flex-1 bg-transparent outline-none text-white font-mono caret-zinc-200 text-[16px] sm:text-xs"
                 spellCheck={false}
                 autoComplete="off"
                 autoCapitalize="off"
+                placeholder="type a command..."
               />
+              <span className="cursor-block text-zinc-400 text-xs ml-0.5" />
             </div>
           </div>
         </div>

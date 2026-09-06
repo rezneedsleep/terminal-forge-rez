@@ -1,64 +1,128 @@
-import { Mail, Phone, Copy, Check } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Mail, Phone, Copy, Check, ArrowLeft, Terminal } from 'lucide-react';
+import TextScramble from '@/components/TextScramble';
+import { playKeySound } from '@/lib/terminalAudio';
 
-const ContactSection = () => {
-  const [copied, setCopied] = useState(false);
+const ContactSection: React.FC = () => {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const primaryEmail = 'zyxienn21@gmail.com';
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('zyxienn@vstn.cloud');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    playKeySound();
+    navigator.clipboard.writeText(primaryEmail);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   return (
-    <section id="contact" className="px-4 sm:px-6 py-24 scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
-        <div className="fade-in-1 flex items-center gap-2 mb-10 text-terminal-dim font-mono text-sm">
-          <span className="text-terminal-green">$</span>
-          <span className="text-terminal-green">ls</span>
-          <span>-la details/</span>
+    <div className="w-full space-y-6">
+      {/* Top Terminal Breadcrumb & Return Link */}
+      <div className="flex items-center justify-between gap-2 text-zinc-500 font-mono text-xs select-none">
+        <div className="flex items-center gap-2">
+          <Terminal size={14} className="text-zinc-400" />
+          <span className="text-zinc-400">rez@infra-audit:~$</span>
+          <span className="text-zinc-200">./</span>
+          <span className="text-zinc-400">
+            <TextScramble text="c-mail.sh" />
+          </span>
+          <span className="cursor-block text-zinc-500 text-[9px]" />
+        </div>
+        <a 
+          href="/" 
+          onClick={() => playKeySound()}
+          className="btn-tui text-xs text-zinc-300 hover:text-white active:scale-[0.97]"
+          title="Return to Workstation"
+        >
+          <ArrowLeft size={12} />
+          <span>[ESC] cd ~ (Home)</span>
+        </a>
+      </div>
+
+      {/* Section Header Label */}
+      <div className="text-[11px] font-bold tracking-[0.2em] text-zinc-300 uppercase flex items-center gap-2 select-none">
+        <span>C-MAIL // COMMUNICATIONS & TRANSMISSION</span>
+        <span className="h-px bg-zinc-800 flex-1" />
+      </div>
+
+      {/* Main Transmission Card with ASCII Corners */}
+      <div className="border border-[#27272a] bg-[#0c0c0f] p-4 sm:p-8 space-y-6 relative">
+        {/* Corner ASCII brackets */}
+        <span className="absolute top-1 left-1.5 font-mono text-[10px] text-zinc-600 select-none">┌</span>
+        <span className="absolute top-1 right-1.5 font-mono text-[10px] text-zinc-600 select-none">┐</span>
+        <span className="absolute bottom-1 left-1.5 font-mono text-[10px] text-zinc-600 select-none">└</span>
+        <span className="absolute bottom-1 right-1.5 font-mono text-[10px] text-zinc-600 select-none">┘</span>
+
+        {/* Header line */}
+        <div className="border-b border-[#1c1c21] pb-4">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <h1 className="font-mono text-lg sm:text-2xl font-bold text-white tracking-wide flex items-center gap-2">
+              <TextScramble text="Direct Transmission Link" />
+              <span className="text-[9px] bg-[#18181c] text-zinc-400 border border-zinc-700 px-1.5 py-0.5">
+                ACTIVE 200 OK
+              </span>
+            </h1>
+            <span className="text-zinc-500 text-xs font-mono">NODE: vstn.cloud</span>
+          </div>
+          <p className="text-zinc-400 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl">
+            Available for server virtualization, embedded IoT hardware research, full-stack consulting, and security auditing. Choose a communication channel below.
+          </p>
         </div>
 
-        <div className="fade-in-2 border border-border rounded-lg bg-card p-6 md:p-10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-16 h-px bg-terminal-cyan/40" />
-          <div className="absolute top-0 left-0 h-16 w-px bg-terminal-cyan/40" />
-          <div className="absolute bottom-0 right-0 w-16 h-px bg-terminal-cyan/40" />
-          <div className="absolute bottom-0 right-0 h-16 w-px bg-terminal-cyan/40" />
+        {/* Communication Channels Grid */}
+        <div>
+          <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-semibold mb-3 select-none">
+            AVAILABLE CHANNELS:
+          </div>
 
-          <h2 className="fade-in-3 text-2xl md:text-3xl font-mono font-bold text-foreground mb-2">
-            Tech-Stack Contact Section
-          </h2>
-          <p className="fade-in-4 text-muted-foreground font-mono text-sm leading-relaxed mb-10 max-w-xl">
-            Available for freelance development and technical consulting. Let's optimize your workflow together.
-          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Primary Email */}
+            <div className="border border-[#222226] bg-[#101014] p-3.5 sm:p-4 flex items-center justify-between gap-3 group hover:border-[#38383e] transition-colors">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="p-2 border border-[#27272d] bg-[#16161c] text-zinc-300 shrink-0">
+                  <Mail size={16} />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-mono text-[10px] text-zinc-500 uppercase">Primary C-Mail</p>
+                  <p className="font-mono text-xs sm:text-sm text-zinc-200 truncate">{primaryEmail}</p>
+                </div>
+              </div>
+              <button
+                onClick={handleCopyEmail}
+                className="btn-tui text-[11px] shrink-0 cursor-pointer active:scale-[0.97]"
+                title="Copy Email"
+              >
+                {copiedEmail ? <Check size={12} className="text-zinc-200" /> : <Copy size={12} />}
+                <span>{copiedEmail ? 'Copied' : '[C] Copy'}</span>
+              </button>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <button
-              onClick={handleCopyEmail}
-              className="fade-in-5 flex items-center gap-4 p-4 border border-border rounded-md bg-background hover:border-terminal-cyan/40 transition-colors group text-left w-full"
+            {/* WhatsApp Direct Relay */}
+            <a
+              href="https://api.whatsapp.com/send?text=Hi%20rez,%20I%20contacted%20you%20from%20vstn.cloud"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => playKeySound()}
+              className="border border-[#222226] bg-[#101014] p-3.5 sm:p-4 flex items-center justify-between gap-3 group hover:border-[#38383e] transition-colors"
             >
-              <Mail size={20} className="text-terminal-cyan shrink-0" />
-              <div className="flex-1">
-                <p className="font-mono text-xs text-terminal-dim mb-1">Email</p>
-                <p className="font-mono text-sm text-foreground group-hover:text-terminal-cyan transition-colors">zyxienn@vstn.cloud</p>
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="p-2 border border-[#27272d] bg-[#16161c] text-zinc-300 shrink-0">
+                  <Phone size={16} />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-mono text-[10px] text-zinc-500 uppercase">WhatsApp Direct Link</p>
+                  <p className="font-mono text-xs sm:text-sm text-zinc-200 group-hover:text-white truncate">
+                    +62 8•• •••• ••••
+                  </p>
+                </div>
               </div>
-              {copied
-                ? <Check size={16} className="text-terminal-green shrink-0" />
-                : <Copy size={16} className="text-terminal-dim group-hover:text-terminal-cyan shrink-0 transition-colors" />
-              }
-            </button>
-
-            <a href="https://wa.me/1XXXXXXXX" target="_blank" rel="noopener noreferrer" className="fade-in-5 flex items-center gap-4 p-4 border border-border rounded-md bg-background hover:border-terminal-cyan/40 transition-colors group">
-              <Phone size={20} className="text-terminal-cyan" />
-              <div>
-                <p className="font-mono text-xs text-terminal-dim mb-1">WhatsApp</p>
-                <p className="font-mono text-sm text-foreground group-hover:text-terminal-cyan transition-colors">+62XXXXXXXXXX</p>
-              </div>
+              <span className="btn-tui text-[11px] shrink-0">
+                <span>[W] Chat</span>
+              </span>
             </a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

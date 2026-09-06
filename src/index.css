@@ -4,39 +4,39 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 90%;
+    --background: 0 0% 3%;
+    --foreground: 0 0% 96%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 90%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 90%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 185 100% 45%;
+    --primary: 0 0% 96%;
     --primary-foreground: 0 0% 4%;
 
-    --secondary: 155 100% 50%;
-    --secondary-foreground: 0 0% 4%;
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 96%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 185 100% 45%;
-    --accent-foreground: 0 0% 4%;
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 96%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 185 100% 45%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 0 0% 90%;
 
-    --radius: 0.5rem;
+    --radius: 0px;
 
-    --terminal-cyan: 185 100% 50%;
-    --terminal-green: 155 100% 50%;
-    --terminal-dim: 0 0% 40%;
+    --terminal-cyan: 0 0% 94%;
+    --terminal-green: 0 0% 80%;
+    --terminal-dim: 0 0% 46%;
   }
 
   /* Tambahan Smooth Scroll */
@@ -45,7 +45,7 @@
   }
 
   section {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 40px;
   }
 }
 
@@ -55,11 +55,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-[#060608] text-foreground font-mono antialiased selection:bg-zinc-200 selection:text-black;
   }
 }
 
-/* Scanline overlay */
+/* Scanline overlay with CRT beam */
 .scanlines {
   position: relative;
 }
@@ -71,46 +71,153 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 50;
+  z-index: 40;
   background: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 2px,
-    hsla(0, 0%, 0%, 0.03) 2px,
-    hsla(0, 0%, 0%, 0.03) 4px
+    hsla(0, 0%, 0%, 0.035) 2px,
+    hsla(0, 0%, 0%, 0.035) 4px
   );
   will-change: transform;
   transform: translateZ(0);
 }
 
+/* CRT Beam sweep */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.012) 50%,
+    rgba(255, 255, 255, 0.025) 95%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 41;
+  animation: crtBeam 7s linear infinite;
+}
+
+@keyframes crtBeam {
+  0% { transform: translateY(-140px); }
+  100% { transform: translateY(100vh); }
+}
+
+/* CRT Screen Refresh / Flicker when tab switches */
+@keyframes crtFlicker {
+  0% {
+    opacity: 0.8;
+    filter: brightness(1.3) contrast(1.15);
+    transform: translateY(1px);
+  }
+  35% {
+    opacity: 0.95;
+    filter: brightness(0.9);
+    transform: translateY(-0.5px);
+  }
+  70% {
+    opacity: 0.92;
+    filter: brightness(1.1);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    transform: translateY(0);
+  }
+}
+
+.animate-crt-switch {
+  animation: crtFlicker 0.22s ease-out;
+}
+
 /* Grid pattern */
 .grid-pattern {
   background-image:
-    linear-gradient(hsla(185, 100%, 50%, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, hsla(185, 100%, 50%, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(hsla(0, 0%, 100%, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, hsla(0, 0%, 100%, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
   background-attachment: local;
 }
 
-/* Terminal cursor blink */
+/* Terminal block cursor blink */
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-.cursor-blink {
-  animation: blink 1s step-end infinite;
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
-/* Glow effects */
+.cursor-blink {
+  animation: blink 0.9s step-start infinite;
+}
+
+.cursor-block {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  animation: blink 0.9s step-start infinite;
+}
+
+/* Glow effects - Monochrome */
 .glow-cyan {
-  text-shadow: 0 0 10px hsl(185 100% 50% / 0.5), 0 0 40px hsl(185 100% 50% / 0.15);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 .glow-green {
-  text-shadow: 0 0 10px hsl(155 100% 50% / 0.5), 0 0 40px hsl(155 100% 50% / 0.15);
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
 }
 
 .border-glow-cyan {
-  box-shadow: 0 0 15px hsl(185 100% 50% / 0.1), inset 0 0 15px hsl(185 100% 50% / 0.03);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+/* 1-Bit Dithered Halftone simulation */
+.dither-1bit {
+  filter: grayscale(100%) contrast(180%) brightness(95%);
+  image-rendering: pixelated;
+}
+
+/* TUI Button styles */
+.btn-tui {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border: 1px solid #27272a;
+  background-color: #121214;
+  color: #f4f4f5;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.btn-tui:hover {
+  background-color: #27272a;
+  border-color: #52525b;
+  color: #ffffff;
+}
+.btn-tui-inverted {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border: 1px solid #09090b;
+  background-color: #e4e4e7;
+  color: #09090b;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.btn-tui-inverted:hover {
+  background-color: #ffffff;
+  border-color: #000000;
+  box-shadow: 1px 1px 0px #000000;
 }
 
 /* Font family */
@@ -163,8 +270,29 @@
   100% { top: 0; }
 }
 
-/* Feature card hover glow (pure CSS, no JS state) */
+/* Feature card hover glow */
 .feature-card:hover {
-  border-color: var(--glow-color, hsl(185 100% 50%));
-  box-shadow: 0 0 20px -5px var(--glow-color, hsl(185 100% 50%));
+  border-color: #52525b;
+  box-shadow: 0 0 15px -3px rgba(255, 255, 255, 0.08);
 }
+
+/* UNIX/TUI Terminal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09090c;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* CRT monitor vignette */
+.crt-vignette {
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.65);
+}
