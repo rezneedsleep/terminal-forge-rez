@@ -1,6 +1,5 @@
-import React, { ReactNode, useState, useEffect } from 'react';
-import { Globe, Lock, Plus, ArrowLeft, ArrowRight, Volume2, VolumeX } from 'lucide-react';
-import { isTerminalSoundEnabled, toggleTerminalSound, playBeepSound } from '@/lib/terminalAudio';
+import React, { ReactNode } from 'react';
+import { Globe, Lock, Plus, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface CyberWindowFrameProps {
   children: ReactNode;
@@ -11,20 +10,6 @@ const CyberWindowFrame: React.FC<CyberWindowFrameProps> = ({
   children, 
   domain = "vstn.cloud" 
 }) => {
-  const [sfxOn, setSfxOn] = useState(true);
-
-  useEffect(() => {
-    setSfxOn(isTerminalSoundEnabled());
-  }, []);
-
-  const handleToggleSfx = () => {
-    const newState = toggleTerminalSound();
-    setSfxOn(newState);
-    if (newState) {
-      playBeepSound();
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#050507] text-[#f4f4f5] flex flex-col font-mono selection:bg-zinc-200 selection:text-black">
       {/* Top Browser / Window Header */}
@@ -68,20 +53,6 @@ const CyberWindowFrame: React.FC<CyberWindowFrameProps> = ({
 
         {/* Right Utility Actions */}
         <div className="flex items-center gap-1.5 sm:gap-2 text-zinc-400 shrink-0">
-          {/* SFX Toggle */}
-          <button
-            onClick={handleToggleSfx}
-            className={`flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono border cursor-pointer transition-colors ${
-              sfxOn 
-                ? 'bg-[#18181f] text-zinc-200 border-zinc-700 hover:border-zinc-500' 
-                : 'bg-[#101014] text-zinc-500 border-[#25252b] hover:text-zinc-400'
-            }`}
-            title={sfxOn ? "Sound Effects ON (Click to mute)" : "Sound Effects MUTED (Click to unmute)"}
-          >
-            {sfxOn ? <Volume2 size={11} className="text-zinc-300" /> : <VolumeX size={11} />}
-            <span className="hidden sm:inline">{sfxOn ? "SFX" : "MUTE"}</span>
-          </button>
-
           <span className="hidden md:inline-block text-[10px] uppercase tracking-widest text-zinc-400 bg-[#17171c] px-2 py-0.5 border border-[#26262b]">
             CyberOS v1.0.8
           </span>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Building2, ExternalLink } from 'lucide-react';
 import TextScramble from '@/components/TextScramble';
-import { playKeySound } from '@/lib/terminalAudio';
 
 const ExperienceSection: React.FC = () => (
   <section id="experience" className="w-full py-2 scroll-mt-14">
@@ -28,7 +27,6 @@ const ExperienceSection: React.FC = () => (
       href="https://bytenodes.icu"
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => playKeySound()}
       className="border border-[#27272a] bg-[#0c0c0f] p-5 sm:p-6 hover:border-[#3f3f46] transition-all duration-200 group block select-none relative"
     >
       {/* Corner ASCII brackets */}

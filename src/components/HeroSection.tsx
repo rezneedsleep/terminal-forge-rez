@@ -2,7 +2,6 @@ import React from 'react';
 import { Terminal, Github, Instagram, Disc, Mail } from 'lucide-react';
 import portraitSrc from '@/assets/portrait.jpg';
 import TextScramble from '@/components/TextScramble';
-import { playTabSwitchSound, playKeySound } from '@/lib/terminalAudio';
 
 interface HeroSectionProps {
   activeTab?: string;
@@ -117,7 +116,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               href="https://github.com/rezneedsleep"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => playKeySound()}
               className="btn-tui-inverted text-[11px] sm:text-xs justify-center py-2 sm:py-1 active:scale-[0.98]"
               title="GitHub Profile"
             >
@@ -129,7 +127,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               href="https://instagram.com/rez.css"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => playKeySound()}
               className="btn-tui-inverted text-[11px] sm:text-xs justify-center py-2 sm:py-1 active:scale-[0.98]"
               title="Instagram"
             >
@@ -141,7 +138,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               href="https://discord.com/users/864702111542673428"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => playKeySound()}
               className="btn-tui-inverted text-[11px] sm:text-xs justify-center py-2 sm:py-1 active:scale-[0.98]"
               title="Discord"
             >
@@ -151,7 +147,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
             <a
               href="/contact"
-              onClick={() => playKeySound()}
               className="btn-tui-inverted text-[11px] sm:text-xs justify-center py-2 sm:py-1 bg-[#09090b] text-[#e4e4e7] hover:bg-[#27272a] hover:text-white active:scale-[0.98]"
               title="Contact / Email"
             >
@@ -169,10 +164,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           return (
             <button
               key={tab.id}
-              onClick={() => {
-                playTabSwitchSound();
-                onSelectTab && onSelectTab(tab.id);
-              }}
+              onClick={() => onSelectTab && onSelectTab(tab.id)}
               className={`px-3 py-1.5 sm:py-1 text-xs font-mono transition-all cursor-pointer select-none flex items-center gap-1.5 shrink-0 active:scale-[0.97] ${
                 isActive
                   ? 'font-bold bg-[#1a1a20] border border-[#52525b] text-white shadow-[0_0_8px_rgba(255,255,255,0.06)]'

@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Terminal as TerminalIcon } from 'lucide-react';
 import TextScramble from '@/components/TextScramble';
-import { playKeySound, playBeepSound } from '@/lib/terminalAudio';
 
 /* ── command definitions ──────────────────────────────────── */
 interface OutputLine {
@@ -142,7 +141,6 @@ const InteractiveTerminal = () => {
 
     if (!cmd) return;
 
-    playBeepSound();
     setCmdHistory((prev) => [...prev, cmd]);
     setHistoryIdx(-1);
 
@@ -169,7 +167,6 @@ const InteractiveTerminal = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    playKeySound();
     if (e.key === 'Enter') {
       runCommand(input);
       setInput('');
@@ -252,10 +249,7 @@ const InteractiveTerminal = () => {
               <button
                 key={c}
                 type="button"
-                onClick={() => {
-                  playKeySound();
-                  runCommand(c);
-                }}
+                onClick={() => runCommand(c)}
                 className="px-2 py-0.5 bg-[#141418] hover:bg-[#222228] active:bg-[#2c2c34] border border-[#27272e] text-zinc-300 hover:text-white rounded-none cursor-pointer transition-colors"
               >
                 [{c}]
@@ -294,10 +288,7 @@ const InteractiveTerminal = () => {
                 ref={inputRef}
                 type="text"
                 value={input}
-                onChange={(e) => {
-                  playKeySound();
-                  setInput(e.target.value);
-                }}
+                onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 className="flex-1 bg-transparent outline-none text-white font-mono caret-zinc-200 text-[16px] sm:text-xs"
                 spellCheck={false}

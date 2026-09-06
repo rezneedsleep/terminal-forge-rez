@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Copy, Check, ArrowLeft, Terminal } from 'lucide-react';
 import TextScramble from '@/components/TextScramble';
-import { playKeySound } from '@/lib/terminalAudio';
 
 const ContactSection: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const primaryEmail = 'zyxienn21@gmail.com';
 
   const handleCopyEmail = () => {
-    playKeySound();
     navigator.clipboard.writeText(primaryEmail);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
@@ -29,7 +27,6 @@ const ContactSection: React.FC = () => {
         </div>
         <a 
           href="/" 
-          onClick={() => playKeySound()}
           className="btn-tui text-xs text-zinc-300 hover:text-white active:scale-[0.97]"
           title="Return to Workstation"
         >
@@ -101,7 +98,6 @@ const ContactSection: React.FC = () => {
               href="https://api.whatsapp.com/send?text=Hi%20rez,%20I%20contacted%20you%20from%20vstn.cloud"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => playKeySound()}
               className="border border-[#222226] bg-[#101014] p-3.5 sm:p-4 flex items-center justify-between gap-3 group hover:border-[#38383e] transition-colors"
             >
               <div className="flex items-center gap-3 min-w-0">

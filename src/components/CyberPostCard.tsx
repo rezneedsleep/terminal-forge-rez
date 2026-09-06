@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Terminal, Bookmark, Cpu, Check } from 'lucide-react';
 import TextScramble from '@/components/TextScramble';
-import { playTabSwitchSound, playKeySound } from '@/lib/terminalAudio';
 
 interface CyberPostCardProps {
   onSwitchTab?: (tab: string) => void;
@@ -11,7 +10,6 @@ const CyberPostCard: React.FC<CyberPostCardProps> = ({ onSwitchTab }) => {
   const [copied, setCopied] = useState(false);
 
   const copyLog = () => {
-    playKeySound();
     navigator.clipboard.writeText("Rezky Andrian (rez) — CyberOS Noir v1.0.8 // vstn.cloud");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -89,10 +87,7 @@ const CyberPostCard: React.FC<CyberPostCardProps> = ({ onSwitchTab }) => {
         <div className="flex items-center gap-2">
           {onSwitchTab && (
             <button
-              onClick={() => {
-                playTabSwitchSound();
-                onSwitchTab('terminal');
-              }}
+              onClick={() => onSwitchTab('terminal')}
               className="btn-tui text-xs cursor-pointer active:scale-[0.97]"
               title="Open Terminal Tab"
             >
@@ -103,10 +98,7 @@ const CyberPostCard: React.FC<CyberPostCardProps> = ({ onSwitchTab }) => {
 
           {onSwitchTab && (
             <button
-              onClick={() => {
-                playTabSwitchSound();
-                onSwitchTab('projects');
-              }}
+              onClick={() => onSwitchTab('projects')}
               className="btn-tui text-xs cursor-pointer active:scale-[0.97]"
               title="Open Projects Tab"
             >

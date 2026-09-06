@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { playTabSwitchSound, playKeySound } from '@/lib/terminalAudio';
 
 interface CyberStatuslineProps {
   onSelectTab?: (tab: string) => void;
@@ -14,7 +13,6 @@ const CyberStatusline: React.FC<CyberStatuslineProps> = ({ onSelectTab }) => {
         return;
       }
       if (e.key === 'Escape') {
-        playKeySound();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
@@ -23,14 +21,12 @@ const CyberStatusline: React.FC<CyberStatuslineProps> = ({ onSelectTab }) => {
   }, []);
 
   const copyContact = () => {
-    playKeySound();
     navigator.clipboard.writeText('zyxienn21@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleTabClick = (tab: string) => {
-    playTabSwitchSound();
     if (onSelectTab) onSelectTab(tab);
   };
 
@@ -60,10 +56,7 @@ const CyberStatusline: React.FC<CyberStatuslineProps> = ({ onSelectTab }) => {
         </button>
         <span className="text-zinc-700 hidden sm:inline">•</span>
         <button 
-          onClick={() => {
-            playKeySound();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95"
         >
           <span className="text-zinc-200 font-semibold">[ESC]</span> Top

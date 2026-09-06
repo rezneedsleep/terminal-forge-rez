@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Radio, Bluetooth, Activity, BookOpen, ExternalLink, Bookmark, ShieldAlert, Cpu } from 'lucide-react';
 import TextScramble from '@/components/TextScramble';
-import { playKeySound } from '@/lib/terminalAudio';
 
 interface ProjectData {
   id: string;
@@ -98,7 +97,6 @@ const FeaturedProjectsSection: React.FC = () => {
   const [savedId, setSavedId] = useState<string | null>(null);
 
   const handleSave = (proj: ProjectData) => {
-    playKeySound();
     navigator.clipboard.writeText(proj.link || proj.name);
     setSavedId(proj.id);
     setTimeout(() => setSavedId(null), 2000);
@@ -203,7 +201,6 @@ const FeaturedProjectsSection: React.FC = () => {
                       href={proj.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => playKeySound()}
                       className="btn-tui text-xs active:scale-[0.97]"
                       title={`Visit ${proj.name}`}
                     >
