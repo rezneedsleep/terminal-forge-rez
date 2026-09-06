@@ -26,14 +26,14 @@ const COMMANDS: Record<string, { desc: string; run: () => OutputLine[] }> = {
   identity: {
     desc: 'Display user identity',
     run: () => [
-      { text: '┌──────────────────────────────────────────┐', color: 'text-zinc-400' },
-      { text: '│  IDENTITY CARD                           │', color: 'text-zinc-200' },
-      { text: '├──────────────────────────────────────────┤', color: 'text-zinc-400' },
-      { text: '│  Name      : Rezky (rez)                 │', color: 'text-zinc-300' },
-      { text: '│  Domain    : vstn.cloud                  │', color: 'text-zinc-300' },
-      { text: '│  Focus     : Infrastructure & Embedded   │', color: 'text-zinc-300' },
-      { text: '│  Location  : Indonesia 🇮🇩                │', color: 'text-zinc-300' },
-      { text: '└──────────────────────────────────────────┘', color: 'text-zinc-400' },
+      { text: '┌────────────────────────────────────┐', color: 'text-zinc-400' },
+      { text: '│  IDENTITY CARD                     │', color: 'text-zinc-200' },
+      { text: '├────────────────────────────────────┤', color: 'text-zinc-400' },
+      { text: '│  Name     : Rezky (rez)            │', color: 'text-zinc-300' },
+      { text: '│  Domain   : vstn.cloud             │', color: 'text-zinc-300' },
+      { text: '│  Focus    : Infra & Embedded       │', color: 'text-zinc-300' },
+      { text: '│  Location : Indonesia 🇮🇩           │', color: 'text-zinc-300' },
+      { text: '└────────────────────────────────────┘', color: 'text-zinc-400' },
     ],
   },
 
@@ -283,20 +283,20 @@ const InteractiveTerminal = () => {
 
             {/* Active prompt */}
             <div className="flex items-center gap-2 pt-1">
-              <span className="text-zinc-300 font-semibold whitespace-nowrap text-xs sm:text-sm">rez@vstn:~$</span>
+              <span className="text-zinc-300 font-semibold whitespace-nowrap text-xs sm:text-sm shrink-0">rez@vstn:~$</span>
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent outline-none text-white font-mono caret-zinc-200 text-[16px] sm:text-xs"
+                className="flex-1 min-w-0 bg-transparent outline-none text-white font-mono caret-zinc-200 text-[16px] sm:text-xs"
                 spellCheck={false}
                 autoComplete="off"
                 autoCapitalize="off"
                 placeholder="type a command..."
               />
-              <span className="cursor-block text-zinc-400 text-xs ml-0.5" />
+              <span className="cursor-block text-zinc-400 text-xs ml-0.5 shrink-0" />
             </div>
           </div>
         </div>

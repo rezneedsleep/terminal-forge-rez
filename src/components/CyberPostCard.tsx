@@ -84,35 +84,36 @@ const CyberPostCard: React.FC<CyberPostCardProps> = ({ onSwitchTab }) => {
         </div>
 
         {/* Buttons */}
-        <div className="flex items-center gap-2">
+        <div className="grid grid-cols-3 gap-1.5 w-full sm:w-auto sm:flex sm:items-center sm:gap-2">
           {onSwitchTab && (
             <button
               onClick={() => onSwitchTab('terminal')}
-              className="btn-tui text-xs cursor-pointer active:scale-[0.97]"
+              className="btn-tui text-[11px] sm:text-xs justify-center py-1.5 sm:py-1 px-1.5 sm:px-2.5 cursor-pointer active:scale-[0.97]"
               title="Open Terminal Tab"
             >
-              <Terminal size={11} />
-              <span>[↵] Open Shell</span>
+              <Terminal size={11} className="shrink-0" />
+              <span className="hidden sm:inline">[↵] Open Shell</span>
+              <span className="sm:hidden">[↵] Shell</span>
             </button>
           )}
 
           {onSwitchTab && (
             <button
               onClick={() => onSwitchTab('projects')}
-              className="btn-tui text-xs cursor-pointer active:scale-[0.97]"
+              className="btn-tui text-[11px] sm:text-xs justify-center py-1.5 sm:py-1 px-1.5 sm:px-2.5 cursor-pointer active:scale-[0.97]"
               title="Open Projects Tab"
             >
-              <Cpu size={11} />
+              <Cpu size={11} className="shrink-0" />
               <span>[P] Projects</span>
             </button>
           )}
 
           <button
             onClick={copyLog}
-            className="btn-tui text-xs cursor-pointer active:scale-[0.97]"
+            className="btn-tui text-[11px] sm:text-xs justify-center py-1.5 sm:py-1 px-1.5 sm:px-2.5 cursor-pointer active:scale-[0.97]"
             title="Save Log"
           >
-            {copied ? <Check size={11} className="text-zinc-200" /> : <Bookmark size={11} />}
+            {copied ? <Check size={11} className="text-zinc-200 shrink-0" /> : <Bookmark size={11} className="shrink-0" />}
             <span>{copied ? 'Saved!' : '[S] Save'}</span>
           </button>
         </div>

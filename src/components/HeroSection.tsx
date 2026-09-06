@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Terminal, Github, Instagram, Disc, Mail } from 'lucide-react';
 import portraitSrc from '@/assets/portrait.jpg';
 import TextScramble from '@/components/TextScramble';
@@ -25,14 +26,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     <section id="about" className="w-full pt-2 sm:pt-4 pb-2 scroll-mt-14">
       {/* Terminal Command Header with Live Typing Effect */}
       <div className="flex items-center justify-between gap-2 mb-2.5 text-zinc-500 font-mono text-xs select-none">
-        <div className="flex items-center gap-1.5 sm:gap-2 truncate">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 truncate">
           <Terminal size={13} className="text-zinc-400 shrink-0" />
-          <span className="text-zinc-400 text-[11px] sm:text-xs">rez@infra-audit:~$</span>
-          <span className="text-zinc-200 text-[11px] sm:text-xs">cat</span>
-          <span className="text-zinc-300 text-[11px] sm:text-xs">
+          <span className="text-zinc-400 text-[11px] sm:text-xs shrink-0">
+            <span className="hidden sm:inline">rez@infra-audit:~$</span>
+            <span className="sm:hidden">rez:~$</span>
+          </span>
+          <span className="text-zinc-200 text-[11px] sm:text-xs shrink-0">cat</span>
+          <span className="text-zinc-300 text-[11px] sm:text-xs truncate">
             <TextScramble text="profile.id" trigger={activeTab} />
           </span>
-          <span className="cursor-block text-zinc-400 text-[10px]" />
+          <span className="cursor-block text-zinc-400 text-[10px] shrink-0" />
         </div>
         <div className="text-[9px] sm:text-[10px] text-zinc-500 tracking-widest uppercase shrink-0 flex items-center gap-1.5">
           <span className="inline-block w-1.5 h-1.5 bg-zinc-400 rounded-full animate-pulse" />
@@ -56,7 +60,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Top Section: Avatar + Name / Meta */}
         <div className="flex items-center sm:items-start gap-3.5 sm:gap-5">
           {/* 1-Bit Dithered Halftone Portrait */}
-          <div className="w-18 h-18 sm:w-32 sm:h-32 md:w-36 md:h-36 shrink-0 border-2 border-[#09090b] bg-black relative overflow-hidden group">
+          <div className="w-20 h-20 sm:w-32 sm:h-32 md:w-36 md:h-36 shrink-0 border-2 border-[#09090b] bg-black relative overflow-hidden group aspect-square">
             <img
               src={portraitSrc}
               alt="Rezky Andrian"
@@ -70,8 +74,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Identity Handle & Date */}
           <div className="flex-1 min-w-0">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 border-b border-[#09090b]/15 pb-2 mb-2">
-              <div>
-                <h1 className="font-mono text-base sm:text-xl font-bold tracking-tight text-[#09090b]">
+              <div className="min-w-0">
+                <h1 className="font-mono text-base sm:text-xl font-bold tracking-tight text-[#09090b] truncate">
                   @rez
                 </h1>
                 <span className="text-xs text-[#09090b]/70 font-mono">
@@ -145,14 +149,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               <span>[D] Discord</span>
             </a>
 
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="btn-tui-inverted text-[11px] sm:text-xs justify-center py-2 sm:py-1 bg-[#09090b] text-[#e4e4e7] hover:bg-[#27272a] hover:text-white active:scale-[0.98]"
               title="Contact / Email"
             >
               <Mail size={12} className="shrink-0" />
               <span>[C] Contact</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

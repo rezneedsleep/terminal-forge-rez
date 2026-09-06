@@ -195,30 +195,30 @@ const FeaturedProjectsSection: React.FC = () => {
                 </div>
 
                 {/* Hotkeys / Action Links */}
-                <div className="flex items-center gap-2 w-full sm:w-auto justify-end sm:justify-start">
+                <div className="grid grid-cols-2 gap-1.5 w-full sm:w-auto sm:flex sm:items-center sm:gap-2">
                   {proj.link ? (
                     <a
                       href={proj.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-tui text-xs active:scale-[0.97]"
+                      className="btn-tui text-[11px] sm:text-xs justify-center py-1.5 sm:py-1 px-2 active:scale-[0.97]"
                       title={`Visit ${proj.name}`}
                     >
                       <span>[↵] Open Project</span>
-                      <ExternalLink size={11} />
+                      <ExternalLink size={11} className="shrink-0" />
                     </a>
                   ) : (
-                    <span className="text-[10px] font-mono text-zinc-500 px-2 py-1 border border-[#222227] bg-[#121216]">
-                      [HW Hardware Build]
+                    <span className="text-[10px] font-mono text-zinc-500 px-2 py-1.5 sm:py-1 border border-[#222227] bg-[#121216] flex items-center justify-center text-center">
+                      [HW Build]
                     </span>
                   )}
 
                   <button
                     onClick={() => handleSave(proj)}
-                    className="btn-tui text-xs cursor-pointer active:scale-[0.97]"
+                    className="btn-tui text-[11px] sm:text-xs justify-center py-1.5 sm:py-1 px-2 cursor-pointer active:scale-[0.97]"
                     title="Copy info"
                   >
-                    <Bookmark size={11} />
+                    <Bookmark size={11} className="shrink-0" />
                     <span>{savedId === proj.id ? 'Saved!' : '[S] Save'}</span>
                   </button>
                 </div>

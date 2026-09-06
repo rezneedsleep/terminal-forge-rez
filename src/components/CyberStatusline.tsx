@@ -33,53 +33,56 @@ const CyberStatusline: React.FC<CyberStatuslineProps> = ({ onSelectTab }) => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0a0a0d]/95 backdrop-blur-md border-t border-[#222226] px-2.5 sm:px-4 py-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] flex items-center justify-between font-mono text-[10px] text-zinc-400 select-none">
       {/* Left Hotkey Guides */}
-      <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto whitespace-nowrap scrollbar-none py-0.5 touch-pan-x">
+      <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto whitespace-nowrap scrollbar-none py-0.5 touch-pan-x min-w-0 flex-1 mr-2">
         <button 
           onClick={() => handleTabClick('terminal')}
-          className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95"
+          className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95 shrink-0"
         >
-          <span className="text-zinc-200 font-semibold">[⌘K]</span> Shell
+          <span className="text-zinc-200 font-semibold">[T]</span> Shell
         </button>
-        <span className="text-zinc-700 hidden sm:inline">•</span>
+        <span className="text-zinc-700 hidden sm:inline shrink-0">•</span>
         <button 
           onClick={() => handleTabClick('projects')}
-          className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95"
+          className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95 shrink-0"
         >
           <span className="text-zinc-200 font-semibold">[P]</span> Projects
         </button>
-        <span className="text-zinc-700 hidden sm:inline">•</span>
+        <span className="text-zinc-700 hidden sm:inline shrink-0">•</span>
         <button 
           onClick={() => handleTabClick('overview')}
-          className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95"
+          className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95 shrink-0"
         >
           <span className="text-zinc-200 font-semibold">[O]</span> Overview
         </button>
-        <span className="text-zinc-700 hidden sm:inline">•</span>
+        <span className="text-zinc-700 hidden sm:inline shrink-0">•</span>
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95"
+          className="hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 active:scale-95 shrink-0"
         >
           <span className="text-zinc-200 font-semibold">[ESC]</span> Top
         </button>
       </div>
 
       {/* Right User & System Status */}
-      <div className="flex items-center gap-2.5 sm:gap-3 shrink-0 ml-2">
+      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
         <button
           onClick={copyContact}
-          className="hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400"
+          className="hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0 font-mono text-[10px] text-zinc-400 shrink-0"
           title="Click to copy email"
         >
           {copied ? (
-            <span className="text-white font-semibold">COPIED EMAIL!</span>
+            <span className="text-white font-semibold">COPIED!</span>
           ) : (
-            <span>@rezkyandrian</span>
+            <>
+              <span className="hidden sm:inline">@rezkyandrian</span>
+              <span className="sm:hidden">@rez</span>
+            </>
           )}
         </button>
-        <span className="text-zinc-700 hidden md:inline">•</span>
-        <span className="hidden md:inline text-zinc-500">vstn.cloud</span>
-        <span className="text-zinc-700 hidden md:inline">•</span>
-        <span className="text-zinc-300 font-semibold flex items-center gap-1.5">
+        <span className="text-zinc-700 hidden md:inline shrink-0">•</span>
+        <span className="hidden md:inline text-zinc-500 shrink-0">vstn.cloud</span>
+        <span className="text-zinc-700 hidden md:inline shrink-0">•</span>
+        <span className="text-zinc-300 font-semibold flex items-center gap-1.5 shrink-0">
           <span className="inline-block w-1.5 h-1.5 bg-zinc-300 rounded-full animate-pulse" />
           <span>SYS_OK</span>
           <span className="cursor-block text-zinc-500 text-[8px]" />
