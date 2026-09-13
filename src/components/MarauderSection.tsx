@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
-import { Radio, Bluetooth, Activity, BookOpen, ExternalLink, Bookmark, ShieldAlert, Cpu } from 'lucide-react';
-import TextScramble from '@/components/TextScramble';
+import React from 'react';
+import { Radio, Bluetooth, Server, BookOpen, ExternalLink, Cpu } from 'lucide-react';
 
 interface ProjectData {
   id: string;
   name: string;
-  version: string;
   category: string;
-  meta: string;
   description: string;
-  bullets: string[];
   tags: string[];
   link?: string;
-  linkText?: string;
-  warning?: string;
   icon: React.ElementType;
 }
 
@@ -21,206 +15,118 @@ const PROJECTS: ProjectData[] = [
   {
     id: 'marauder',
     name: 'ESP32 Marauder',
-    version: 'V1.0.7',
-    category: 'HARDWARE / RF SECURITY',
-    meta: '@rez • 2d ago • 68 words • 12 saves • 8 replies',
-    description: 'A comprehensive wireless auditing platform built on the ESP32 microcontroller. Capable of 802.11 frame manipulation, PMKID capture, deauthentication detection, and BLE device enumeration — all from a handheld, battery-powered unit.',
-    bullets: [
-      '802.11 Frame Analysis — Beacon, probe, and deauth frame capture and injection',
-      'PMKID Harvesting — WPA/WPA2 handshake-less key material extraction',
-      'BLE Sniffing — Bluetooth Low Energy device discovery and enumeration',
-      'ESP32 Dual-Core — Xtensa LX6 @ 240MHz with Wi-Fi and BLE radios',
-      'TFT Display — Real-time packet visualization and menu navigation',
-      'SD Card Logging — Persistent capture storage for post-analysis',
-    ],
-    tags: ['esp32', 'rf-security', '802.11', 'c++', 'embedded'],
-    warning: 'Developed for educational and ethical security auditing purposes. Always obtain explicit authorization before testing.',
+    category: 'Hardware / RF Security',
+    description: 'Portable wireless auditing cyberdeck for 802.11 frame capture, PMKID harvesting, and BLE device enumeration.',
+    tags: ['ESP32', 'RF Security', 'C++'],
     icon: Radio,
   },
   {
     id: 'blue-jammer',
-    name: 'ESP32 Blue Jammer',
-    version: 'V0.9.4',
-    category: 'HARDWARE / RF DISRUPTION',
-    meta: '@rez • 5d ago • 45 words • 7 saves • 4 replies',
-    description: 'Bluetooth signal disruption tool built on the ESP32 platform. Targets BLE and Classic Bluetooth channels for controlled interference testing in authorized RF environments.',
-    bullets: [
-      'BLE Channel Flooding — Targeted disruption across 40 BLE advertising channels',
-      'Classic BT Interference — Frequency hopping disruption on 79 Bluetooth channels',
-      'ESP32 BLE Stack — Native Bluetooth 4.2 + BLE radio with full stack control',
-      'Frequency Spectrum Analysis — Live hopping monitor in RF test chambers',
-    ],
-    tags: ['esp32', 'bluetooth', 'ble', 'rf-testing', 'embedded'],
-    warning: 'For authorized RF testing only. Bluetooth signal disruption may violate local regulations. Ensure compliance with applicable laws.',
+    name: 'ESP32 Jammer',
+    category: 'Hardware / RF Testing',
+    description: 'Bluetooth signal testing tool analyzing BLE channel flooding and frequency hopping in isolated RF environments.',
+    tags: ['ESP32', 'Bluetooth', 'Embedded'],
     icon: Bluetooth,
   },
   {
-    id: 'personal-tracker',
-    name: 'Personal Tracker',
-    version: 'V2.1.0',
-    category: 'WEB APP / PRODUCTIVITY',
-    meta: '@rez • 1w ago • 52 words • 18 saves • 6 replies',
-    description: 'A self-hosted personal analytics dashboard for tracking daily expenses, building habits, and logging body weight trends. Built with a modern responsive interface and localized database storage.',
-    bullets: [
-      'Financial Tracking — Daily expense categorization, cash-flow monitoring, and monthly summaries',
-      'Habit Grid — GitHub-style activity contribution grid for daily streak monitoring',
-      'Weight Log — Body metrics logging with visual trend lines and target goal forecasting',
-      'Self-Hosted — Deployed on personal Proxmox infrastructure under tracker.vstn.cloud',
-    ],
-    tags: ['react', 'typescript', 'tailwind', 'sqlite', 'self-hosted'],
-    link: 'https://tracker.vstn.cloud',
-    linkText: 'tracker.vstn.cloud',
-    icon: Activity,
+    id: 'bytenodes-panel',
+    name: 'ByteNodes Panel',
+    category: 'Cloud / Infrastructure',
+    description: 'Enterprise game server & KVM cloud orchestration platform with bare-metal Proxmox nodes, automated Docker instances, and 1 Tbps DDoS mitigation.',
+    tags: ['Proxmox', 'Docker', 'Pterodactyl'],
+    link: 'https://panel.bytenodes.id',
+    icon: Server,
   },
   {
     id: 'edutrack',
     name: 'EduTrack',
-    version: 'V1.4.2',
-    category: 'WEB APP / EDUCATION',
-    meta: '@rez • 2w ago • 58 words • 23 saves • 11 replies',
-    description: 'An academic tracking platform for students to manage schedules, assignments, and grades in one streamlined dashboard. Built for productivity, deadlined schedules, and academic success.',
-    bullets: [
-      'Course Management — Organize courses, subjects, and semester schedules in a unified view',
-      'Assignment Tracker — Track assignments, deadlines, and submission status with priority sorting',
-      'Grade Analytics — Visualize academic performance with interactive grade charts and GPA trends',
-      'Deadline Reminders — Get notified of upcoming due dates and never miss a submission again',
-      'Student Dashboard — Personalized overview with quick access to all academic activities',
-    ],
-    tags: ['react', 'vite', 'tailwind', 'supabase', 'dashboard'],
+    category: 'Web App / Education',
+    description: 'Academic productivity dashboard for students to manage schedules, assignments, deadlines, and GPA analytics.',
+    tags: ['React', 'Vite', 'MySQL'],
     link: 'https://edutrack.davinn.net',
-    linkText: 'edutrack.davinn.net',
     icon: BookOpen,
   },
 ];
 
 const FeaturedProjectsSection: React.FC = () => {
-  const [savedId, setSavedId] = useState<string | null>(null);
-
-  const handleSave = (proj: ProjectData) => {
-    navigator.clipboard.writeText(proj.link || proj.name);
-    setSavedId(proj.id);
-    setTimeout(() => setSavedId(null), 2000);
-  };
-
   return (
-    <section id="projects" className="w-full py-2 scroll-mt-14">
+    <section id="projects" className="w-full py-10 sm:py-16 scroll-mt-24">
       {/* Section Header */}
-      <div className="flex items-center justify-between gap-2 mb-3 text-zinc-500 font-mono text-xs select-none">
-        <div className="flex items-center gap-2">
-          <span className="text-zinc-300">$</span>
-          <span className="text-zinc-200">cat</span>
-          <span className="text-zinc-400">
-            <TextScramble text="featured_projects.md" />
-          </span>
-          <span className="cursor-block text-zinc-500 text-[9px]" />
-        </div>
-        <span className="text-[10px] text-zinc-600 tracking-wider">[HOTKEY: P]</span>
+      <div className="flex items-center gap-2 mb-3">
+        <span className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium inline-flex items-center gap-1.5">
+          <Cpu size={13} className="text-zinc-400" />
+          <span>Projects</span>
+        </span>
       </div>
 
-      <div className="text-[11px] font-bold tracking-[0.2em] text-zinc-300 uppercase mb-4 flex items-center gap-2 select-none">
-        <span>PROJECTS // CHANGELOG & REPOSITORIES</span>
-        <span className="h-px bg-zinc-800 flex-1" />
-      </div>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-2">
+        Featured Work & Prototypes.
+      </h2>
+      <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mb-6">
+        Curated hardware prototypes, wireless security tools, and production web applications.
+      </p>
 
-      {/* Project Cards (Styled as TUI Changelog / Post Cards) */}
-      <div className="space-y-6">
+      {/* Compact Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         {PROJECTS.map((proj) => {
           const Icon = proj.icon;
-          return (
-            <article
-              key={proj.id}
-              className="border border-[#27272a] bg-[#0d0d10] p-3.5 sm:p-6 transition-all hover:border-[#3f3f46] relative group"
-            >
-              {/* Corner ASCII brackets */}
-              <span className="absolute top-1 left-1.5 font-mono text-[10px] text-zinc-600 select-none">┌</span>
-              <span className="absolute top-1 right-1.5 font-mono text-[10px] text-zinc-600 select-none">┐</span>
-              <span className="absolute bottom-1 left-1.5 font-mono text-[10px] text-zinc-600 select-none">└</span>
-              <span className="absolute bottom-1 right-1.5 font-mono text-[10px] text-zinc-600 select-none">┘</span>
 
-              {/* Card Meta Header */}
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1f1f24] pb-2.5 mb-3 select-none text-[11px] font-mono text-zinc-500">
-                <div className="flex items-center gap-2">
-                  <Icon size={14} className="text-zinc-300 shrink-0" />
-                  <span className="text-zinc-200 font-semibold">{proj.name}</span>
-                  <span className="text-zinc-600">/</span>
-                  <span className="text-[10px] bg-[#1a1a20] text-zinc-300 px-1.5 py-0.2 border border-zinc-700">
-                    <TextScramble text={proj.version} />
+          return (
+            <article 
+              key={proj.id}
+              className="card-modern p-4 xs:p-5 sm:p-6 flex flex-col justify-between group hover:border-zinc-700 transition-all duration-200"
+            >
+              <div>
+                {/* Header Meta: Category */}
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 group-hover:text-white transition-colors">
+                    <Icon size={15} />
+                  </div>
+                  <span className="text-[11px] font-medium text-zinc-400">
+                    {proj.category}
                   </span>
                 </div>
-                <div className="text-[10px] text-zinc-500">
-                  {proj.meta}
-                </div>
+
+                {/* Project Title */}
+                <h3 className="text-base sm:text-lg font-bold text-white mb-1.5 group-hover:text-zinc-100 transition-colors">
+                  {proj.name}
+                </h3>
+
+                {/* Concise Description */}
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4">
+                  {proj.description}
+                </p>
               </div>
 
-              {/* Description */}
-              <p className="font-mono text-xs sm:text-sm text-zinc-300 leading-relaxed mb-3 sm:mb-4">
-                {proj.description}
-              </p>
-
-              {/* Bullet Features (Changelog Format) */}
-              <div className="bg-[#09090b] border border-[#1e1e23] p-3 sm:p-4 mb-3 sm:mb-4">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-semibold mb-2 flex items-center gap-1.5 select-none">
-                  <span>KEY SPECIFICATIONS & FEATURES:</span>
-                </div>
-                <ul className="space-y-1.5 text-xs font-mono text-zinc-400">
-                  {proj.bullets.map((bullet, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="text-zinc-600 select-none">•</span>
-                      <span className="leading-relaxed">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Warning note if any */}
-              {proj.warning && (
-                <div className="text-[11px] font-mono text-zinc-500 bg-[#121216] border border-[#222227] px-3 py-2 mb-3 sm:mb-4 flex items-start gap-2">
-                  <ShieldAlert size={14} className="text-zinc-400 shrink-0 mt-0.5" />
-                  <span className="leading-normal">{proj.warning}</span>
-                </div>
-              )}
-
-              {/* Bottom Tag Pills & Action Buttons */}
-              <div className="flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-[#1e1e23] select-none">
-                {/* Tag Pills in Brackets */}
-                <div className="flex flex-wrap items-center gap-1.5">
+              {/* Bottom Row: Tags + Links */}
+              <div className="pt-3 border-t border-zinc-850 flex items-center justify-between gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {proj.tags.map((tag) => (
-                    <span
+                    <span 
                       key={tag}
-                      className="text-[10px] font-mono bg-[#141418] text-zinc-400 border border-[#24242a] px-1.5 py-0.5"
+                      className="px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-300 text-[10px] border border-zinc-800 font-medium"
                     >
-                      [{tag}]
+                      {tag}
                     </span>
                   ))}
                 </div>
 
-                {/* Hotkeys / Action Links */}
-                <div className="grid grid-cols-2 gap-1.5 w-full sm:w-auto sm:flex sm:items-center sm:gap-2">
+                <div className="flex items-center gap-2 shrink-0">
                   {proj.link ? (
                     <a
                       href={proj.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-tui text-[11px] sm:text-xs justify-center py-1.5 sm:py-1 px-2 active:scale-[0.97]"
-                      title={`Visit ${proj.name}`}
+                      className="btn-pill-primary text-[11px] py-1.5 px-3 inline-flex items-center gap-1 active:scale-95 touch-manipulation"
                     >
-                      <span>[↵] Open Project</span>
-                      <ExternalLink size={11} className="shrink-0" />
+                      <span>Live</span>
+                      <ExternalLink size={11} />
                     </a>
                   ) : (
-                    <span className="text-[10px] font-mono text-zinc-500 px-2 py-1.5 sm:py-1 border border-[#222227] bg-[#121216] flex items-center justify-center text-center">
-                      [HW Build]
+                    <span className="text-[10px] text-zinc-500 font-mono">
+                      Lab
                     </span>
                   )}
-
-                  <button
-                    onClick={() => handleSave(proj)}
-                    className="btn-tui text-[11px] sm:text-xs justify-center py-1.5 sm:py-1 px-2 cursor-pointer active:scale-[0.97]"
-                    title="Copy info"
-                  >
-                    <Bookmark size={11} className="shrink-0" />
-                    <span>{savedId === proj.id ? 'Saved!' : '[S] Save'}</span>
-                  </button>
                 </div>
               </div>
             </article>

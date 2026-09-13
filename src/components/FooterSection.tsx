@@ -1,23 +1,31 @@
 import React from 'react';
+import { ArrowUp } from 'lucide-react';
 
-const FooterSection: React.FC = () => (
-  <footer className="w-full py-10 pb-16 border-t border-[#1e1e23] section-animate select-none">
-    <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-zinc-500 font-mono text-xs">
-      <p className="flex items-center gap-2">
-        <span className="text-zinc-400">© {new Date().getFullYear()} rez</span>
-        <span className="text-zinc-700">•</span>
-        <span>Infrastructure & Embedded Systems</span>
-      </p>
-      <div className="flex items-center gap-3 text-[11px] text-zinc-600">
-        <span>CyberOS v1.0.8</span>
-        <span>•</span>
-        <span className="text-zinc-400 font-semibold flex items-center gap-1">
-          <span className="inline-block w-1.5 h-1.5 bg-zinc-400 rounded-full animate-pulse" />
-          ONLINE 200 OK
+const FooterSection: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <footer className="w-full pt-8 pb-[max(2rem,calc(env(safe-area-inset-bottom,0px)+1.5rem))] border-t border-zinc-850 select-none">
+      <div className="flex items-center justify-between">
+        <span className="text-xs sm:text-sm text-zinc-400 font-medium">
+          © {new Date().getFullYear()} Rezky Andrian
         </span>
+
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 active:scale-95 touch-manipulation transition-all text-xs font-medium cursor-pointer"
+          title="Back to Top"
+          aria-label="Back to Top"
+        >
+          <ArrowUp size={13} />
+          <span>Top</span>
+        </button>
       </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 export default FooterSection;

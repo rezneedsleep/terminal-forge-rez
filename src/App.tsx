@@ -43,7 +43,7 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
       className={`transition-[opacity,transform] duration-300 ${
         transitioning
           ? 'opacity-0 translate-y-2'
-          : 'opacity-100 translate-y-0'
+          : 'opacity-100 transform-none'
       }`}
     >
       {displayChildren}
@@ -53,14 +53,13 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
 
 /* ── main app ────────────────────────────────────────────── */
 const App = () => {
-  const [booted, setBooted] = useState(false);
-
-  // Check session — only show boot screen once per session
-  useEffect(() => {
-    if (sessionStorage.getItem('rez-booted')) {
-      setBooted(true);
+  const [booted, setBooted] = useState(() => {
+    try {
+      return Boolean(sessionStorage.getItem('rez-booted'));
+    } catch {
+      return false;
     }
-  }, []);
+  });
 
   const handleBootComplete = () => {
     sessionStorage.setItem('rez-booted', '1');

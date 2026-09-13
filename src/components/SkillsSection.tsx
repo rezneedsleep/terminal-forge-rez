@@ -1,114 +1,94 @@
 import React from 'react';
 import {
-  Server, Container, Globe, Network,
-  Database, HardDrive,
-  Code, Terminal, Cog, ShieldCheck, Flame,
-  Layers, Palette, Zap, Monitor
+  Code2, Cpu, Server, ShieldCheck, Layers, Terminal, 
+  Globe, Database, HardDrive, Zap, Network, Flame
 } from 'lucide-react';
 
-const categories = [
+const CATEGORIES = [
   {
-    title: 'Cloud & Infrastructure',
-    items: [
-      { icon: Server, name: 'Proxmox VE / KVM' },
-      { icon: Container, name: 'Docker' },
-      { icon: Globe, name: 'AWS' },
-    ],
+    title: 'Frontend & Full-Stack Web',
+    icon: Code2,
+    description: 'Modern, responsive, and performant web interfaces with clean architectures.',
+    skills: ['React 18', 'TypeScript', 'Tailwind CSS', 'Next.js', 'Vite', 'Node.js', 'REST APIs'],
   },
   {
-    title: 'Networking',
-    items: [
-      { icon: Globe, name: 'Cloudflare Tunnels' },
-      { icon: Network, name: 'VLAN / DNS Management' },
-      { icon: Network, name: 'MikroTik CHR' },
-    ],
+    title: 'Embedded Systems & Hardware',
+    icon: Cpu,
+    description: 'Low-level microcontrollers, RF communication, and hardware security prototyping.',
+    skills: ['ESP32 Dual-Core', 'Arduino', 'C / C++', '802.11 Wi-Fi', 'Bluetooth Low Energy', 'UART / SPI', 'TFT Displays'],
   },
   {
-    title: 'Database & Storage',
-    items: [
-      { icon: Database, name: 'InnoDB' },
-      { icon: Database, name: 'MySQL' },
-      { icon: HardDrive, name: 'ZFS / LVM Storage' },
-    ],
+    title: 'Cloud & Virtualization',
+    icon: Server,
+    description: 'Self-hosted bare-metal clusters, hypervisors, and container orchestration.',
+    skills: ['Proxmox VE (KVM)', 'Docker', 'LXC Containers', 'Debian Linux', 'ZFS Storage', 'Systemd'],
   },
   {
-    title: 'Backend & Systems',
-    items: [
-      { icon: Terminal, name: 'Linux / Bash' },
-      { icon: Code, name: 'Node.js / Python' },
-      { icon: Cog, name: 'LXC / LXD' },
-    ],
-  },
-  {
-    title: 'Frontend Development',
-    items: [
-      { icon: Layers, name: 'React / Vite' },
-      { icon: Palette, name: 'Tailwind CSS' },
-      { icon: Zap, name: 'JavaScript / Typescript' },
-    ],
-  },
-  {
-    title: 'Security & Web Server',
-    items: [
-      { icon: ShieldCheck, name: 'VPN / WireGuard' },
-      { icon: Flame, name: 'Firewall (iptables / UFW)' },
-      { icon: Monitor, name: 'Nginx Proxy Manager' },
-    ],
+    title: 'Networking & Security',
+    icon: ShieldCheck,
+    description: 'Encrypted network routing, tunneling, access management, and threat testing.',
+    skills: ['MikroTik RouterOS', 'Cloudflare Tunnels', 'WireGuard VPN', 'Nginx Proxy', 'DNS / VLAN', 'Firewall (UFW)'],
   },
 ];
 
-import TextScramble from '@/components/TextScramble';
-
 const SkillsSection: React.FC = () => {
   return (
-    <section id="skills" className="w-full py-2 scroll-mt-14">
-      {/* Section Header */}
-      <div className="flex items-center justify-between gap-2 mb-3 text-zinc-500 font-mono text-xs select-none">
-        <div className="flex items-center gap-2">
-          <span className="text-zinc-300">$</span>
-          <span className="text-zinc-200">cat</span>
-          <span className="text-zinc-400">
-            <TextScramble text="skills.json" />
-          </span>
-          <span className="cursor-block text-zinc-500 text-[9px]" />
-        </div>
-        <span className="text-[10px] text-zinc-600 tracking-wider">[HOTKEY: S]</span>
+    <section id="services" className="w-full py-10 sm:py-16 scroll-mt-24">
+      {/* Section Tag */}
+      <div className="flex items-center gap-2 mb-3">
+        <span className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium inline-flex items-center gap-1.5">
+          <Code2 size={13} className="text-zinc-400" />
+          <span>Services & Skills</span>
+        </span>
       </div>
 
-      <div className="text-[11px] font-bold tracking-[0.2em] text-zinc-300 uppercase mb-4 flex items-center gap-2 select-none">
-        <span>SKILLS // TECHNICAL SPECIFICATIONS</span>
-        <span className="h-px bg-zinc-800 flex-1" />
-      </div>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-2 sm:mb-3">
+        Full-stack versatility from UI to silicon.
+      </h2>
+      <p className="text-xs sm:text-sm md:text-base text-zinc-400 max-w-2xl mb-6 sm:mb-8">
+        A deep toolkit combining software design principles, low-level firmware engineering, and Linux system administration.
+      </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {categories.map((cat, idx) => (
-          <div
-            key={cat.title}
-            className="border border-[#27272a] bg-[#0c0c0f] p-4 transition-colors hover:border-[#3f3f46] relative group"
-          >
-            {/* Corner ASCII brackets */}
-            <span className="absolute top-1 left-1.5 font-mono text-[9px] text-zinc-600 select-none">┌</span>
-            <span className="absolute top-1 right-1.5 font-mono text-[9px] text-zinc-600 select-none">┐</span>
-            <span className="absolute bottom-1 left-1.5 font-mono text-[9px] text-zinc-600 select-none">└</span>
-            <span className="absolute bottom-1 right-1.5 font-mono text-[9px] text-zinc-600 select-none">┘</span>
-
-            <div className="flex items-center justify-between border-b border-[#1c1c21] pb-2 mb-3 select-none">
-              <h3 className="font-mono text-xs font-bold text-zinc-200 uppercase tracking-wider">
-                <TextScramble text={cat.title} />
-              </h3>
-              <span className="text-[10px] text-zinc-600 font-mono">0{idx + 1}</span>
-            </div>
-
-            <div className="space-y-2.5">
-              {cat.items.map(({ icon: Icon, name }) => (
-                <div key={name} className="flex items-center gap-2.5 text-zinc-300 hover:text-white transition-colors">
-                  <Icon size={14} className="text-zinc-500 shrink-0" />
-                  <span className="font-mono text-xs truncate">{name}</span>
+      {/* Grid of skill categories */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        {CATEGORIES.map((cat, i) => {
+          const Icon = cat.icon;
+          return (
+            <div 
+              key={cat.title}
+              className="card-modern p-4.5 xs:p-5 sm:p-7 flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-3 sm:mb-4">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-200">
+                    <Icon size={16} className="sm:w-[18px] sm:h-[18px]" />
+                  </div>
+                  <span className="text-xs font-mono text-zinc-600">
+                    0{i + 1}
+                  </span>
                 </div>
-              ))}
+
+                <h3 className="text-base sm:text-lg font-bold text-white mb-1.5 sm:mb-2">
+                  {cat.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4 sm:mb-6">
+                  {cat.description}
+                </p>
+              </div>
+
+              <div className="pt-3 sm:pt-4 border-t border-zinc-850 flex flex-wrap gap-1.5 sm:gap-2">
+                {cat.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2.5 sm:px-3 py-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-zinc-300 text-[11px] sm:text-xs font-medium transition-colors hover:border-zinc-700 hover:text-white"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
